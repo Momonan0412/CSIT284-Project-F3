@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1020848347752",
+    "firebase_url": "https://crud-porject-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "crud-porject",
+    "storage_bucket": "crud-porject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020848347752:android:06e4935b053de758ec79dd",
+        "android_client_info": {
+          "package_name": "com.example.quizapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqPi4_WPgsAAuVNgpAJOYrt91XiXzb7Zs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

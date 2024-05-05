@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- shape_with_shadow.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- Add corner radius -->
+    <corners android:radius="40dp" />
+
+    <!-- Add shadow -->
+    <!-- Add shadow -->
+    <stroke
+        android:width="2dp"
+        android:color="#888888" /> <!-- Border color -->
+    <padding
+        android:bottom="4dp"
+        android:left="4dp"
+        android:right="4dp"
+        android:top="4dp" />
+    <corners android:radius="4dp" />
+    <solid android:color="#FFFFFF" /> <!-- Set the color to pure white -->
+</shape>
+
