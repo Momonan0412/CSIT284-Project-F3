@@ -2,6 +2,7 @@ package com.example.quizapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -14,6 +15,7 @@ import com.google.firebase.FirebaseApp;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainActivity extends AppCompatActivity {
+    int indexCount = 0;
     DatabaseUtilities databaseUtilities;
     RelativeLayout loadingPanel;
     Button btnSignIn, btnSignUp;
@@ -36,24 +38,39 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Level " + finalI + " -> " + o.length());
                 databaseSize.addAndGet(o.length());
                 System.out.println("Total Kanji Table Size: " + databaseSize);
-                // TODO: ALWAYS CHECK HOW MANY KANJI ARE THERE
+                // TODO: Implement something that would update the table
+                //  ALWAYS CHECK HOW MANY KANJI ARE THERE
                 // @ DATE: 5/7/2024 CURRENT COUNT 351
+                indexCount += finalI;
+                if(indexCount == 55 && databaseSize.get() != 351){
+                    ScrapperTask task = new ScrapperTask(getApplicationContext(), btnSignIn, btnSignUp, loadingPanel, textViewPleaseWait);
+                    task.execute();
+                } else if (indexCount == 55){
+                    System.out.println("The index count is: " + indexCount + " and database size is: " + databaseSize.get());
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Set the visibility of buttons and other views after the delay
+                            btnSignIn.setVisibility(View.VISIBLE);
+                            btnSignUp.setVisibility(View.VISIBLE);
+                            loadingPanel.setVisibility(View.GONE);
+                            textViewPleaseWait.setVisibility(View.GONE);
+                        }
+                    }, 2000); // 2000 milliseconds = 2 seconds
+                }
             });
         }
-        System.out.println(databaseSize);
-//        ScrapperTask task = new ScrapperTask(getApplicationContext(), btnSignIn, btnSignUp, loadingPanel, textViewPleaseWait);
-//        task.execute();
-//        btnSignIn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getApplicationContext(), SignIn.class));
-//            }
-//        });
-//        btnSignUp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getApplicationContext(), SignUp.class));
-//            }
-//        });
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SignIn.class));
+            }
+        });
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SignUp.class));
+            }
+        });
     }
 }

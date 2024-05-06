@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -17,11 +16,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ScrapperTask extends AsyncTask<Void, Void, Void> {
-
-    int databaseSize = 0;
     private String url;
     private Document document;
     private final String htmlQueryForKanji = ".character-grid";
@@ -34,7 +31,8 @@ public class ScrapperTask extends AsyncTask<Void, Void, Void> {
     RelativeLayout loadingPanel;
     @SuppressLint("StaticFieldLeak")
     ConstraintLayout textViewPleaseWait;
-    public ScrapperTask(Context applicationContext, Button btnSignIn, Button btnSignUp, RelativeLayout loadingPanel, ConstraintLayout textViewPleaseWait) {
+    public ScrapperTask(Context applicationContext, Button btnSignIn, Button btnSignUp,
+                        RelativeLayout loadingPanel, ConstraintLayout textViewPleaseWait) {
         this.url = "https://www.wanikani.com/kanji?difficulty=pleasant";
         this.applicationContext = applicationContext;
         this.btnSignIn = btnSignIn;
@@ -45,9 +43,7 @@ public class ScrapperTask extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
-        if(databaseSize != 351){
-            updateKanjiTable();
-        }
+        updateKanjiTable();
         return null;
     }
 
@@ -96,7 +92,7 @@ public class ScrapperTask extends AsyncTask<Void, Void, Void> {
                 loadingPanel.setVisibility(View.GONE);
                 textViewPleaseWait.setVisibility(View.GONE);
             }
-        }, 4000); // 2000 milliseconds = 2 seconds
+        }, 2000); // 2000 milliseconds = 2 seconds
     }
 }
 
