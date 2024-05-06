@@ -7,7 +7,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.quizapplication.callbacks.JapaneseDataCallBack;
-import com.example.quizapplication.callbacks.UpdateKanjiTableCallback;
 import com.example.quizapplication.callbacks.UserExistCallback;
 import com.example.quizapplication.record.User;
 import com.google.android.gms.tasks.OnCompleteListener;
