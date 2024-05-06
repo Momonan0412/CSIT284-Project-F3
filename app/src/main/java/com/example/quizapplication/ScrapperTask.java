@@ -53,9 +53,9 @@ public class ScrapperTask extends AsyncTask<Void, Void, Void> {
                     String kanji = data.select(".subject-character__characters").text();
                     String furigana = data.select(".subject-character__reading").text();
                     String english = data.select(".subject-character__meaning").text();
-                    System.out.println("Kanji: " + kanji);
-                    System.out.println("Furigana: " + furigana);
-                    System.out.println("English: " + english);
+//                    System.out.println("Kanji: " + kanji);
+//                    System.out.println("Furigana: " + furigana);
+//                    System.out.println("English: " + english);
                     DatabaseUtilities.addKanji(level, kanji,english, furigana, applicationContext);
                 }
             }
