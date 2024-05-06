@@ -17,11 +17,14 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ScrapperTask extends AsyncTask<Void, Void, Void> {
+
+    int databaseSize = 0;
     private String url;
     private Document document;
-    private String cssQueryForKanji = ".character-grid";
+    private final String htmlQueryForKanji = ".character-grid";
     Context applicationContext;
     @SuppressLint("StaticFieldLeak")
     Button btnSignIn;
@@ -42,9 +45,16 @@ public class ScrapperTask extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
+        if(databaseSize != 351){
+            updateKanjiTable();
+        }
+        return null;
+    }
+
+    private void updateKanjiTable() {
         try {
             document = Jsoup.connect(url).get();
-            Elements kanjiData = document.select(cssQueryForKanji);
+            Elements kanjiData = document.select(htmlQueryForKanji);
             for (Element k : kanjiData) {
                 String level = k.select(".character-grid__header-text").text();
                 System.out.println(level);
@@ -52,18 +62,27 @@ public class ScrapperTask extends AsyncTask<Void, Void, Void> {
                 for (Element data : dataElements) {
                     String kanji = data.select(".subject-character__characters").text();
                     String furigana = data.select(".subject-character__reading").text();
-                    String english = data.select(".subject-character__meaning").text();
-//                    System.out.println("Kanji: " + kanji);
-//                    System.out.println("Furigana: " + furigana);
-//                    System.out.println("English: " + english);
-                    DatabaseUtilities.addKanji(level, kanji,english, furigana, applicationContext);
+                    String englishMeaningURL = "https://www.wanikani.com/kanji/" + kanji;
+                    Document englishDocument = Jsoup.connect(englishMeaningURL).get();
+                    String getHTMLQueryForEnglishMeaning = ".subject-section__meanings-items";
+                    Elements englishMeaningData = englishDocument.select(getHTMLQueryForEnglishMeaning);
+                    StringBuilder englishMeanings = new StringBuilder();
+                    int size = englishMeaningData.size();
+                    for(int i = 0; i < size; i++){
+                        String english = englishMeaningData.get(i).text();
+                        englishMeanings.append(english);
+                        if(i < size - 1){
+                            englishMeanings.append(", ");
+                        }
+                    }
+                        DatabaseUtilities.addKanji(level, kanji, furigana, String.valueOf(englishMeanings), applicationContext);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
     }
+
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
@@ -77,7 +96,7 @@ public class ScrapperTask extends AsyncTask<Void, Void, Void> {
                 loadingPanel.setVisibility(View.GONE);
                 textViewPleaseWait.setVisibility(View.GONE);
             }
-        }, 2000); // 2000 milliseconds = 2 seconds
+        }, 4000); // 2000 milliseconds = 2 seconds
     }
 }
 

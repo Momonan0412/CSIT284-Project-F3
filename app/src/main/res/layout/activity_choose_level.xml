@@ -215,7 +215,7 @@
                     android:layout_marginLeft="60dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="60dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="7.5dp"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#A9A9A9"
                     android:elevation="10dp"

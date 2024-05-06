@@ -7,6 +7,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.quizapplication.callbacks.JapaneseDataCallBack;
+import com.example.quizapplication.callbacks.UpdateKanjiTableCallback;
 import com.example.quizapplication.callbacks.UserExistCallback;
 import com.example.quizapplication.record.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,9 +34,10 @@ public class DatabaseUtilities {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    Toast.makeText(applicationContext, "Kanji already exists", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(applicationContext, "Kanji already exists", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(applicationContext, "Kanji " + level + " Is Already Up to Date", Toast.LENGTH_SHORT).show();
                 } else {
-                    kanjiRef.push().setValue(new JapaneseData(kanji, furigana, english))
+                    kanjiRef.push().setValue(new JapaneseData(kanji, english, furigana))
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -159,5 +161,6 @@ public class DatabaseUtilities {
                 callback.onUserExistChecked(false);
             }
         });
+
     }
 }
