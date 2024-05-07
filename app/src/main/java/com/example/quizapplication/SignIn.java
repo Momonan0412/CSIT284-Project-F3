@@ -29,7 +29,7 @@ public class SignIn extends AppCompatActivity {
                         editTextPasswordInSignIn.getText().toString(), getApplicationContext(), (userExist)->{
                             if (userExist) {
                                 Toast.makeText(getApplicationContext(), "Sign In Successful", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(SignIn.this, ChooseLevel.class));
+                                startActivity(new Intent(SignIn.this, MainMenu.class));
                             } else {
                                 Toast.makeText(getApplicationContext(), "Sign In Unsuccessful", Toast.LENGTH_SHORT).show();
                             }
