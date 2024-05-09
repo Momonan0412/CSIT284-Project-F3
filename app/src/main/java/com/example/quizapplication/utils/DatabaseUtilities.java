@@ -151,15 +151,24 @@ public class DatabaseUtilities {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                         String randomId = userSnapshot.getKey(); // Get the random ID
-                        String passwordInDatabase = userSnapshot.child("password").getValue(String.class);
+                        String passwordInDatabase = userSnapshot.child("hashedPassword").getValue(String.class);
                         String usernameInDatabase = userSnapshot.child("username").getValue(String.class);
                         Log.d("Firebase", "Random ID: " + randomId);
                         Log.d("Firebase", "Username: " + usernameInDatabase);
                         Log.d("Firebase", "Password: " + passwordInDatabase);
-                        if (usernameInDatabase.equals(username) && BCrypt.checkpw(password, passwordInDatabase)) {
-                            User user = User.getInstance();
-                            user.setUsername(username);
-                            callback.onUserExistChecked(true);
+                        if (usernameInDatabase.equals(username)) {
+                            if (passwordInDatabase != null && BCrypt.checkpw(password, passwordInDatabase)) {
+                                // Password is not null and matches
+                                User user = User.getInstance();
+                                user.setUsername(username);
+                                callback.onUserExistChecked(true);
+                            } else {
+                                // Password is null or does not match
+                                callback.onUserExistChecked(false);
+                            }
+                        } else {
+                            // Username does not match
+                            callback.onUserExistChecked(false);
                         }
                     }
                 } else {
@@ -223,6 +232,7 @@ public class DatabaseUtilities {
                         String currentUserUsername = userSnapshot.child("username").getValue(String.class);
                         // Check if the current user's username matches the given username
                         if (currentUserUsername != null && currentUserUsername.equals(username)) {
+                            Log.d("Firebase", "Username: " + currentUserUsername);
                             // If a match is found, get a reference to the profile_picture node
                             DatabaseReference profilePictureRef = userSnapshot.child("profile_picture").getRef();
                             // Set the image URL as the value in the Realtime Database under the profile_picture node
