@@ -1,4 +1,4 @@
-package com.example.quizapplication;
+package com.example.quizapplication.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -16,7 +16,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class ScrapperTask extends AsyncTask<Void, Void, Void> {
     private String url;

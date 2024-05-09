@@ -1,4 +1,4 @@
-package com.example.quizapplication;
+package com.example.quizapplication.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.quizapplication.utils.DatabaseUtilities;
+import com.example.quizapplication.models.JapaneseData;
+import com.example.quizapplication.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

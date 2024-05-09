@@ -1,4 +1,4 @@
-package com.example.quizapplication;
+package com.example.quizapplication.models;
 
 public class JapaneseData {
     private String kanji;

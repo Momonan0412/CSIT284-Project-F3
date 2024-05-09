@@ -1,14 +1,18 @@
-package com.example.quizapplication;
+package com.example.quizapplication.utils;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.quizapplication.callbacks.JapaneseDataCallBack;
 import com.example.quizapplication.callbacks.UserExistCallback;
-import com.example.quizapplication.record.User;
+import com.example.quizapplication.designpattern.User;
+import com.example.quizapplication.models.JapaneseData;
+import com.example.quizapplication.models.UserRegistrationData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -101,7 +105,7 @@ public class DatabaseUtilities {
                 if (dataSnapshot.exists()) {
                     Toast.makeText(applicationContext, "User already exists", Toast.LENGTH_SHORT).show();
                 } else {
-                    userRef.push().setValue(new User(username, hashedPassword))
+                    userRef.push().setValue(new UserRegistrationData(username, hashedPassword))
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -147,6 +151,8 @@ public class DatabaseUtilities {
                         Log.d("Firebase", "Username: " + usernameInDatabase);
                         Log.d("Firebase", "Password: " + passwordInDatabase);
                         if (usernameInDatabase.equals(username) && BCrypt.checkpw(password, passwordInDatabase)) {
+                            User user = User.getInstance();
+                            user.setUsername(username);
                             callback.onUserExistChecked(true);
                         }
                     }
@@ -160,6 +166,9 @@ public class DatabaseUtilities {
                 callback.onUserExistChecked(false);
             }
         });
+    }
 
+    public void uploadImageToStorage(Bitmap bitmap, String username) {
+        // TODO: INSERT IMAGE IN FIREBASE
     }
 }

@@ -1,4 +1,4 @@
-package com.example.quizapplication;
+package com.example.quizapplication.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.quizapplication.callbacks.UserExistCallback;
+import com.example.quizapplication.utils.DatabaseUtilities;
+import com.example.quizapplication.R;
+import com.example.quizapplication.designpattern.User;
 
 public class SignIn extends AppCompatActivity {
     EditText editTextUsernameInSignIn, editTextPasswordInSignIn;
@@ -29,7 +31,9 @@ public class SignIn extends AppCompatActivity {
                         editTextPasswordInSignIn.getText().toString(), getApplicationContext(), (userExist)->{
                             if (userExist) {
                                 Toast.makeText(getApplicationContext(), "Sign In Successful", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(SignIn.this, MainMenu.class));
+                                Intent intent = new Intent(SignIn.this, MainMenu.class);
+                                intent.putExtra("USERNAME_KEY", User.getInstance().getUsername());
+                                startActivity(intent);
                             } else {
                                 Toast.makeText(getApplicationContext(), "Sign In Unsuccessful", Toast.LENGTH_SHORT).show();
                             }

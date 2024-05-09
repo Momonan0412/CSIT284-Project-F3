@@ -1,4 +1,4 @@
-package com.example.quizapplication;
+package com.example.quizapplication.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,12 +6,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.example.quizapplication.utils.DatabaseUtilities;
+import com.example.quizapplication.R;
 import com.example.quizapplication.callbacks.UserExistCallback;
 
 public class SignUp extends AppCompatActivity {

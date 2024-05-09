@@ -10,13 +10,16 @@ import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.quizapplication.activities.SignIn;
+import com.example.quizapplication.activities.SignUp;
+import com.example.quizapplication.utils.DatabaseUtilities;
+import com.example.quizapplication.utils.ScrapperTask;
 import com.google.firebase.FirebaseApp;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainActivity extends AppCompatActivity {
     int indexCount = 0;
-    DatabaseUtilities databaseUtilities;
     RelativeLayout loadingPanel;
     Button btnSignIn, btnSignUp;
     ConstraintLayout textViewPleaseWait;

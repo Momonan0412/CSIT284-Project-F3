@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    tools:context=".SignIn">
+    tools:context=".activities.SignIn">
 
     <ImageView
         android:id="@+id/imageView2"
