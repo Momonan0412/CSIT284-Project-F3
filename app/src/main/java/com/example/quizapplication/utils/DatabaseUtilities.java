@@ -249,18 +249,23 @@ public class DatabaseUtilities {
         }
     }
     public static void profilePictureUpdateChecker (String username, Context applicationContext) {
-        DatabaseReference profilePictureRef = FirebaseDatabase.getInstance().getReference()
-                .child("users").child("your_username").child("profile_picture");
-        profilePictureRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users");
+        Query query = usersRef.orderByChild("username").equalTo(username);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    String imageUrl = dataSnapshot.getValue(String.class);
-                    User user = User.getInstance();
-                    // @ChatGPT says that loading it @into the user.getUserProfilePicture() it would replace any existing drawable
-                    Picasso.get().load(imageUrl).into(user.getUserProfilePicture());
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    // Get the profile picture link from the user's node
+                    String imageUrl = userSnapshot.child("profile_picture").getValue(String.class);
+                    if (imageUrl != null) {
+                        User user = User.getInstance();
+                        // Load the profile picture into the user's ImageView
+                        Picasso.get().load(imageUrl).into(user.getUserProfilePicture());
+                        break; // No need to continue iterating if the username is unique
+                    }
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Handle onCancelled event

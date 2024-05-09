@@ -47,9 +47,10 @@ public class MainMenu extends AppCompatActivity {
         // TODO: UPDATE THE PROFILE PICTURE WHENEVER THE USER CHANGES
         DatabaseUtilities.profilePictureUpdateChecker(user.getUsername(), getApplicationContext());
         // What if! Implement call to update profile picture? Or?
-
+        System.out.println(user.getUsername());
+        System.out.println(user.getUserProfilePicture());
         imageView = user.getUserProfilePicture(); // does not work, initial plan
-
+        
         Bundle extras = getIntent().getExtras();
         assert extras != null;
         txtUsername.setText(extras.getString("USERNAME_KEY"));
