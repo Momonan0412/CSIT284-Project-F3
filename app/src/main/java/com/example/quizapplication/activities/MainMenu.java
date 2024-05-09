@@ -2,7 +2,12 @@ package com.example.quizapplication.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -13,12 +18,17 @@ import android.widget.TextView;
 import com.example.quizapplication.R;
 import com.example.quizapplication.activities.ChooseLevel;
 import com.example.quizapplication.designpattern.User;
+import com.example.quizapplication.utils.DatabaseUtilities;
 
 public class MainMenu extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
     Button btnStudy, btnReview, btnQuiz, btnExit;
     TextView txtUsername;
+    ImageView imageView;
+
+
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +37,19 @@ public class MainMenu extends AppCompatActivity {
         btnReview = findViewById(R.id.btnReview);
         btnQuiz = findViewById(R.id.btnQuiz);
         btnExit = findViewById(R.id.btnExit);
+        user = User.getInstance();
         txtUsername = findViewById(R.id.txtUsername);
+        imageView = findViewById(R.id.imgUserPP);
+
+        user.setUserProfilePicture(imageView);
+        // TODO: STUDY AND CHECK IF THIS IS RELEVANT @profilePictureGetter, line 260
+
+        // TODO: UPDATE THE PROFILE PICTURE WHENEVER THE USER CHANGES
+        DatabaseUtilities.profilePictureUpdateChecker(user.getUsername(), getApplicationContext());
+        // What if! Implement call to update profile picture? Or?
+
+        imageView = user.getUserProfilePicture(); // does not work, initial plan
+
         Bundle extras = getIntent().getExtras();
         assert extras != null;
         txtUsername.setText(extras.getString("USERNAME_KEY"));
@@ -71,11 +93,15 @@ public class MainMenu extends AppCompatActivity {
             // Get the URI of the selected image
             Uri selectedImageUri = data.getData();
 
-            ImageView imageView = findViewById(R.id.imgUserPP);
             imageView.setImageURI(selectedImageUri);
-            User user = User.getInstance();
-            // TODO: BASE IN THE USERNAME, INSERT THE IMAGE IN THE FIREBASE
-            // CALL THE uploadImageToStorage METHOD
+
+            Drawable drawable = imageView.getDrawable();
+            Bitmap bitmap = null;
+            if (drawable instanceof BitmapDrawable) {
+                bitmap = ((BitmapDrawable) drawable).getBitmap();
+            }
+            assert bitmap != null;
+            DatabaseUtilities.uploadImageToStorage(bitmap, user.getUsername(),getApplicationContext());
         }
     }
 }

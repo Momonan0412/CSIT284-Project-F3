@@ -21,11 +21,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.mindrot.jbcrypt.BCrypt;
+
+import java.io.ByteArrayOutputStream;
 
 public class DatabaseUtilities {
     private DatabaseUtilities (){}
@@ -168,7 +174,97 @@ public class DatabaseUtilities {
         });
     }
 
-    public void uploadImageToStorage(Bitmap bitmap, String username) {
-        // TODO: INSERT IMAGE IN FIREBASE
+    public static void uploadImageToStorage(Bitmap bitmap, String username,
+                                            Context applicationContext) {
+        // Create a reference to the Firebase Storage location where the image will be stored
+        StorageReference storageRef = FirebaseStorage
+                .getInstance()
+                .getReference()
+                .child("profile_pictures")
+                .child(username + ".jpg");
+        // Convert Bitmap to byte array
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageData = baos.toByteArray();
+
+        // Upload the image data to Firebase Storage
+        UploadTask uploadTask = storageRef.putBytes(imageData);
+
+        // Listen for upload success/failure
+        uploadTask.addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                // Image upload success
+                // Get the download URL for the image
+                storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                    // Save the image URL to Firebase Realtime Database
+                    Toast.makeText(applicationContext,
+                            "Uploaded profile picture to Firebase Realtime Database with success! :p",
+                            Toast.LENGTH_SHORT).show();
+                    insertUserProfilePicture(uri.toString(), username);
+                });
+            } else {
+                // Image upload failed
+                Toast.makeText(applicationContext, "Failed to upload image to Firebase Storage :(",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public static void insertUserProfilePicture(String imageUrl, String username) {
+        try {
+            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users");
+
+            // Attach a listener to the "users" node to traverse all child nodes
+            usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    // Iterate through each child node under "users"
+                    for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                        // Get the username of the current user
+                        String currentUserUsername = userSnapshot.child("username").getValue(String.class);
+                        // Check if the current user's username matches the given username
+                        if (currentUserUsername != null && currentUserUsername.equals(username)) {
+                            // If a match is found, get a reference to the profile_picture node
+                            DatabaseReference profilePictureRef = userSnapshot.child("profile_picture").getRef();
+                            // Set the image URL as the value in the Realtime Database under the profile_picture node
+                            profilePictureRef.setValue(imageUrl)
+                                    .addOnCompleteListener(task -> {
+                                        if (task.isSuccessful()) {
+                                            // TODO: Handle success
+                                        } else {
+                                            // TODO: Handle failure
+                                        }
+                                    });
+                            // Exit the loop since we found the matching user
+                            break;
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Handle onCancelled event
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void profilePictureUpdateChecker (String username, Context applicationContext) {
+        DatabaseReference profilePictureRef = FirebaseDatabase.getInstance().getReference()
+                .child("users").child("your_username").child("profile_picture");
+        profilePictureRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String imageUrl = dataSnapshot.getValue(String.class);
+                    User user = User.getInstance();
+                    // @ChatGPT says that loading it @into the user.getUserProfilePicture() it would replace any existing drawable
+                    Picasso.get().load(imageUrl).into(user.getUserProfilePicture());
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle onCancelled event
+            }
+        });
     }
 }

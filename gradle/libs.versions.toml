@@ -13,9 +13,11 @@ material = "1.11.0"
 activity = "1.8.0"
 constraintlayout = "2.1.4"
 mysqlConnectorJ = "8.3.0"
+picasso = "2.71828"
 volley = "1.2.1"
 firebaseDatabase = "21.0.0"
 googleGmsGoogleServices = "4.4.1"
+firebaseStorage = "21.0.0"
 
 [libraries]
 firebase-core = { module = "com.google.firebase:firebase-core", version.ref = "firebaseCore" }
@@ -31,8 +33,10 @@ material = { group = "com.google.android.material", name = "material", version.r
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 mysql-connector-j = { module = "com.mysql:mysql-connector-j", version.ref = "mysqlConnectorJ" }
+picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
 volley = { module = "com.android.volley:volley", version.ref = "volley" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
+firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebaseStorage" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
