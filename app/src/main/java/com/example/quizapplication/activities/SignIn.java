@@ -28,11 +28,12 @@ public class SignIn extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Signing In", Toast.LENGTH_SHORT).show();
                 DatabaseUtilities.signInUser(editTextUsernameInSignIn.getText().toString(),
-                        editTextPasswordInSignIn.getText().toString(), getApplicationContext(), (userExist)->{
-                            if (userExist) {
-                                Toast.makeText(getApplicationContext(), "Sign In Successful", Toast.LENGTH_SHORT).show();
+                        editTextPasswordInSignIn.getText().toString(), getApplicationContext(), (user)->{
+                            if (user != null) {
+                                Toast.makeText(getApplicationContext(), "Sign In Successful as " + user.getUsername(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), user.getProfilePictureURL(), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignIn.this, MainMenu.class);
-                                intent.putExtra("USERNAME_KEY", User.getInstance().getUsername());
+                                intent.putExtra("USERNAME_KEY", user.getUsername());
                                 startActivity(intent);
                             } else {
                                 Toast.makeText(getApplicationContext(), "Sign In Unsuccessful", Toast.LENGTH_SHORT).show();

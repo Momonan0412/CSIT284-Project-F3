@@ -32,12 +32,9 @@ public class SignUp extends AppCompatActivity {
             } else if (!password.equals(confirmPassword)) {
                 Toast.makeText(SignUp.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             } else {
-                DatabaseUtilities.registerUser(username, password, SignUp.this, new UserExistCallback() {
-                    @Override
-                    public void onUserExistChecked(boolean userExist) {
-                        if (userExist) {
-                            startActivity(new Intent(SignUp.this, SignIn.class));
-                        }
+                DatabaseUtilities.registerUser(username, password, SignUp.this, userExist -> {
+                    if (userExist) {
+                        startActivity(new Intent(SignUp.this, SignIn.class));
                     }
                 });
             }

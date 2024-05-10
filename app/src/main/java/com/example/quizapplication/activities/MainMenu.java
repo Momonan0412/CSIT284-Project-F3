@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.quizapplication.R;
 import com.example.quizapplication.activities.ChooseLevel;
 import com.example.quizapplication.designpattern.User;
@@ -23,7 +24,7 @@ import com.example.quizapplication.utils.DatabaseUtilities;
 public class MainMenu extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
-    Button btnStudy, btnReview, btnQuiz, btnExit;
+    Button btnStudy, btnReview, btnQuiz, btnExit, btnReloadProfilePicture;
     TextView txtUsername;
     ImageView imageView;
 
@@ -37,48 +38,31 @@ public class MainMenu extends AppCompatActivity {
         btnReview = findViewById(R.id.btnReview);
         btnQuiz = findViewById(R.id.btnQuiz);
         btnExit = findViewById(R.id.btnExit);
+        btnReloadProfilePicture = findViewById(R.id.btnReloadProfilePicture);
         user = User.getInstance();
         txtUsername = findViewById(R.id.txtUsername);
+        Glide.with(getApplicationContext())
+                .load(user.getProfilePictureURL())
+                .preload();
         imageView = findViewById(R.id.imgUserPP);
-
-        user.setUserProfilePicture(imageView);
-        // TODO: STUDY AND CHECK IF THIS IS RELEVANT @profilePictureGetter, line 260
-
-        // TODO: UPDATE THE PROFILE PICTURE WHENEVER THE USER CHANGES
-        DatabaseUtilities.profilePictureUpdateChecker(user.getUsername(), getApplicationContext());
-        // What if! Implement call to update profile picture? Or?
-        System.out.println(user.getUsername());
-        System.out.println(user.getUserProfilePicture());
-        imageView = user.getUserProfilePicture(); // does not work, initial plan
+        Glide.with(getApplicationContext())
+                .load(user.getProfilePictureURL())
+                .into(imageView);
         
         Bundle extras = getIntent().getExtras();
         assert extras != null;
         txtUsername.setText(extras.getString("USERNAME_KEY"));
-        btnStudy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //todo something where makita nimo tanan cards not pina flashcard
-            }
+        btnReloadProfilePicture.setOnClickListener((v)->{
+            reloadActivity();
         });
-        btnReview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //todo something where flashcard pina quizlet and now dis wid spaced repition
-            }
+        btnStudy.setOnClickListener(v -> {
+            //todo something where makita nimo tanan cards not pina flashcard
         });
-        btnQuiz.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(getApplicationContext(), ChooseLevel.class));
-            }
+        btnReview.setOnClickListener(v -> {
+            //todo something where flashcard pina quizlet and now dis wid spaced repition
         });
-        btnExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        btnQuiz.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), ChooseLevel.class)));
+        btnExit.setOnClickListener(v -> finish());
 
     }
     public void onClickUploadImage(View view) {
@@ -104,5 +88,13 @@ public class MainMenu extends AppCompatActivity {
             assert bitmap != null;
             DatabaseUtilities.uploadImageToStorage(bitmap, user.getUsername(),getApplicationContext());
         }
+    }
+    private void reloadActivity() {
+        // Finish the current activity
+        finish();
+        // Start a new instance of the same activity
+        Intent intent = getIntent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION); // Optional: To prevent animation
+        startActivity(intent);
     }
 }

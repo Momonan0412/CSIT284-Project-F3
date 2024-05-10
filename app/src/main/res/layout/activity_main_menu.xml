@@ -28,6 +28,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="85dp"
         android:layout_height="85dp"
         android:layout_marginTop="25dp"
@@ -44,6 +45,17 @@
             android:onClick="onClickUploadImage"
             tools:srcCompat="@drawable/ic_launcher_foreground" />
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btnReloadProfilePicture"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:text="Reload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"

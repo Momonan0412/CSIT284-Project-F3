@@ -8,8 +8,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
+import com.example.quizapplication.callbacks.InsertSuccessCallback;
 import com.example.quizapplication.callbacks.JapaneseDataCallBack;
 import com.example.quizapplication.callbacks.UserExistCallback;
+import com.example.quizapplication.callbacks.UserProfileUpdateCallback;
 import com.example.quizapplication.designpattern.User;
 import com.example.quizapplication.models.JapaneseData;
 import com.example.quizapplication.models.UserRegistrationData;
@@ -99,7 +102,7 @@ public class DatabaseUtilities {
             }
         });
     }
-    public static void registerUser(String username, String password, Context applicationContext, final UserExistCallback callback) {
+    public static void registerUser(String username, String password, Context applicationContext, final InsertSuccessCallback callback) {
         try{
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users");
@@ -118,12 +121,12 @@ public class DatabaseUtilities {
                                     if (task.isSuccessful()) {
                                         // Data added successfully
                                         Toast.makeText(applicationContext, "User Added", Toast.LENGTH_SHORT).show();
-                                        callback.onUserExistChecked(true);
+                                        callback.onInsertSuccessChecked(true);
                                     } else {
                                         // Failed to add data
                                         Toast.makeText(applicationContext, "Failed to add User", Toast.LENGTH_SHORT).show();
                                         Log.e("Firebase", "Error adding User", task.getException());
-                                        callback.onUserExistChecked(false);
+                                        callback.onInsertSuccessChecked(false);
                                     }
                                 }
                             });
@@ -131,12 +134,12 @@ public class DatabaseUtilities {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                callback.onUserExistChecked(false);
+                callback.onInsertSuccessChecked(false);
                 // Handle onCancelled event
             }
         });
         } catch (Exception e) {
-            callback.onUserExistChecked(false);
+            callback.onInsertSuccessChecked(false);
             e.printStackTrace();
         }
     }
@@ -161,24 +164,29 @@ public class DatabaseUtilities {
                                 // Password is not null and matches
                                 User user = User.getInstance();
                                 user.setUsername(username);
-                                callback.onUserExistChecked(true);
+                                DatabaseUtilities.profilePictureUpdateChecker(user.getUsername(), applicationContext, (profilePictureURL) -> {
+                                    if (profilePictureURL != null) {
+                                        user.setProfilePictureURL(profilePictureURL);
+                                    }
+                                });
+                                callback.onUserExistChecked(user);
                             } else {
                                 // Password is null or does not match
-                                callback.onUserExistChecked(false);
+                                callback.onUserExistChecked(null);
                             }
                         } else {
                             // Username does not match
-                            callback.onUserExistChecked(false);
+                            callback.onUserExistChecked(null);
                         }
                     }
                 } else {
-                    callback.onUserExistChecked(false);
+                    callback.onUserExistChecked(null);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                callback.onUserExistChecked(false);
+                callback.onUserExistChecked(null);
             }
         });
     }
@@ -207,13 +215,13 @@ public class DatabaseUtilities {
                 storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                     // Save the image URL to Firebase Realtime Database
                     Toast.makeText(applicationContext,
-                            "Uploaded profile picture to Firebase Realtime Database with success! :p",
+                            "Uploaded profile picture to Firebase Realtime Database with success!",
                             Toast.LENGTH_SHORT).show();
                     insertUserProfilePicture(uri.toString(), username);
                 });
             } else {
                 // Image upload failed
-                Toast.makeText(applicationContext, "Failed to upload image to Firebase Storage :(",
+                Toast.makeText(applicationContext, "Failed to upload image to Firebase Storage",
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -258,7 +266,7 @@ public class DatabaseUtilities {
             e.printStackTrace();
         }
     }
-    public static void profilePictureUpdateChecker (String username, Context applicationContext) {
+    public static void profilePictureUpdateChecker (String username, Context applicationContext, final UserProfileUpdateCallback callback) {
         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users");
         Query query = usersRef.orderByChild("username").equalTo(username);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -270,7 +278,12 @@ public class DatabaseUtilities {
                     if (imageUrl != null) {
                         User user = User.getInstance();
                         // Load the profile picture into the user's ImageView
-                        Picasso.get().load(imageUrl).into(user.getUserProfilePicture());
+//                        Picasso.get().load(imageUrl).into(user.getUserProfilePicture());
+                        // Glide fixed the the auto load image problem? or nah
+
+                        callback.onUserProfileUpdateChecked(imageUrl);
+
+//                        Glide.with(applicationContext).load(imageUrl).into(user.getUserProfilePicture());
                         break; // No need to continue iterating if the username is unique
                     }
                 }
