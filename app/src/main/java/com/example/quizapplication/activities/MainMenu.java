@@ -2,10 +2,8 @@ package com.example.quizapplication.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -17,7 +15,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.quizapplication.R;
-import com.example.quizapplication.activities.ChooseLevel;
 import com.example.quizapplication.designpattern.User;
 import com.example.quizapplication.utils.DatabaseUtilities;
 
@@ -56,10 +53,10 @@ public class MainMenu extends AppCompatActivity {
             reloadActivity();
         });
         btnStudy.setOnClickListener(v -> {
-            //todo something where makita nimo tanan cards not pina flashcard
+            startActivity(new Intent(getApplicationContext(), Study.class));
         });
         btnReview.setOnClickListener(v -> {
-            //todo something where flashcard pina quizlet and now dis wid spaced repition
+            startActivity(new Intent(getApplicationContext(), Review.class));
         });
         btnQuiz.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), ChooseLevel.class)));
         btnExit.setOnClickListener(v -> finish());
