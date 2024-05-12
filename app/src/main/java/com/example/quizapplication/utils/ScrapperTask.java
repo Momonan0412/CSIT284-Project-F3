@@ -53,6 +53,7 @@ public class ScrapperTask extends AsyncTask<Void, Void, Void> {
             for (Element k : kanjiData) {
                 String level = k.select(".character-grid__header-text").text();
                 System.out.println(level);
+//                if(level.equals("Level 8") || level.equals("Level 9") || level.equals("Level 10")){}
                 Elements dataElements = k.select(".subject-character__content");
                 for (Element data : dataElements) {
                     String kanji = data.select(".subject-character__characters").text();
@@ -70,7 +71,7 @@ public class ScrapperTask extends AsyncTask<Void, Void, Void> {
                             englishMeanings.append(", ");
                         }
                     }
-                        DatabaseUtilities.addKanji(level, kanji, furigana, String.valueOf(englishMeanings), applicationContext);
+                    DatabaseUtilities.addKanji(level, kanji, furigana, String.valueOf(englishMeanings), applicationContext);
                 }
             }
         } catch (IOException e) {

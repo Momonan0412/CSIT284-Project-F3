@@ -59,7 +59,7 @@ public class ChooseLevel extends AppCompatActivity {
     }
 
     private void sendValueToReceiverActivity(String value) {
-        Intent intent = new Intent(ChooseLevel.this, Content.class);
+        Intent intent = new Intent(ChooseLevel.this, Quiz.class);
         intent.putExtra("key", value);
         startActivity(intent);
     }

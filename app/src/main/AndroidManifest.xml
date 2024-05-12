@@ -34,7 +34,7 @@
             android:name=".activities.SignIn"
             android:exported="false" />
         <activity
-            android:name=".activities.Content"
+            android:name=".activities.Quiz"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

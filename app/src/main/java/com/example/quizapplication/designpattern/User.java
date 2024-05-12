@@ -14,6 +14,7 @@ public class User {
     private String hashedPassword;
     private ImageView userProfilePicture;
     private String profilePictureURL;
+    private int[] userScore;
     private HashSet<JapaneseData> userJapaneseReviewData;
     public static User getInstance() {
         if(instance == null) {
@@ -45,12 +46,19 @@ public class User {
     public void setUserJapaneseReviewData(HashSet<JapaneseData> userJapaneseReviewData) {
         this.userJapaneseReviewData = userJapaneseReviewData;
     }
-
     public String getProfilePictureURL() {
         return profilePictureURL;
     }
 
     public void setProfilePictureURL(String profilePictureURL) {
         this.profilePictureURL = profilePictureURL;
+    }
+
+    public int[] getUserScore() {
+        return userScore;
+    }
+
+    public void setUserScore(int[] userScore) {
+        this.userScore = userScore;
     }
 }
