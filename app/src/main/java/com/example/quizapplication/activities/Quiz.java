@@ -42,7 +42,7 @@ public class Quiz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        StrictModeUtils.enableStrictMode();
+//        StrictModeUtils.enableStrictMode();
         user = User.getInstance(); // SINGLETON, BASE ON THE LOGGED IN USER
         // TODO: HANDLE USER AND IMPLEMENT IN DATABASE
         user.setUserScore(new int[10]);
@@ -77,7 +77,7 @@ public class Quiz extends AppCompatActivity {
     }
     @SuppressLint("SetTextI18n")
     private void kanjiChanger() {
-        textViewManipulator();
+//        textViewManipulator();
         if(jsonArray.length() == 0){
             Toast.makeText(this, "No more kanji", Toast.LENGTH_SHORT).show();
             return;
@@ -147,7 +147,7 @@ public class Quiz extends AppCompatActivity {
     }
     @SuppressLint("SetTextI18n")
     private void checkAnswerAndUpdateScore(int index) {
-        if (textViews[index].getText().toString().equals(answer)) {
+        if (textViews[index].getText().toString().equals(answer[2] + " " + answer[1])) {
             score++;
             textViewScore.setText("Score: " + score);
             Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
@@ -156,13 +156,13 @@ public class Quiz extends AppCompatActivity {
             Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show();
         }
     }
-    private void textViewManipulator() {
-        for(int i = 0; i < 5; i++){
-            textViews[i].setVisibility(View.INVISIBLE);
-            int finalI = i;
-            new Handler().postDelayed(()->{
-                textViews[finalI].setVisibility(View.VISIBLE);
-            }, 500);
-        }
-    }
+//    private void textViewManipulator() {
+//        for(int i = 0; i < 5; i++){
+//            textViews[i].setVisibility(View.INVISIBLE);
+//            int finalI = i;
+//            new Handler().postDelayed(()->{
+//                textViews[finalI].setVisibility(View.VISIBLE);
+//            }, 500);
+//        }
+//    }
 }
