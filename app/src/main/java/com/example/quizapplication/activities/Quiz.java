@@ -42,7 +42,7 @@ public class Quiz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-//        StrictModeUtils.enableStrictMode();
+        StrictModeUtils.enableStrictMode();
         user = User.getInstance(); // SINGLETON, BASE ON THE LOGGED IN USER
         // TODO: HANDLE USER AND IMPLEMENT IN DATABASE
         user.setUserScore(new int[10]);
@@ -67,83 +67,85 @@ public class Quiz extends AppCompatActivity {
             DatabaseUtilities.getKanji(level, getApplicationContext(), (data) -> {
                 Log.d("JSON Data", String.valueOf(data.length()));
                 this.jsonArray = data;
-                this.jsonArrayCopy = data;
-                System.out.println("Data " + data.length() + "\n JsonArray " + jsonArray.length() );
+                JSONArray jsonArrayCopy = new JSONArray();
+                for (int i = 0; i < data.length(); i++) {
+                    try {
+                        jsonArrayCopy.put(new JSONObject(data.getJSONObject(i).toString()));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                this.jsonArrayCopy = jsonArrayCopy;
+                System.out.println("Data " + data.length() + "\n JsonArray " + jsonArray.length());
+                System.out.println("Data " + data.length() + "\n JsonArrayCopy " + jsonArrayCopy.length());
                 kanjiChanger();
             });
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     @SuppressLint("SetTextI18n")
     private void kanjiChanger() {
-//        textViewManipulator();
+        textViewManipulator();
         if(jsonArray.length() == 0){
-            Toast.makeText(this, "No more kanji", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Finish!", Toast.LENGTH_SHORT).show();
+            for(int i = 0; i < 5; i++) {
+                textViews[i].setText("");
+            }
             return;
         }
         int indexKanji = random.nextInt(this.jsonArray.length());
         int indexChoice = random.nextInt(5);
         try {
-            // SET ALL 5
-            HashSet<Integer> set = new HashSet<>();
-            while(set.size() < 5){
+            ArrayList<Integer> indexContains = new ArrayList<>();
+            for(int i = 0; i < 5; i++) {
                 int indexKanjiForSet = random.nextInt(jsonArrayCopy.length());
-                if(indexKanjiForSet != indexKanji){
-                    set.add(indexKanjiForSet);
-                }
-            }
-            Iterator<Integer> it = set.iterator();
-            int i = 0;
-            while (it.hasNext()) {
-                JSONObject jsonObject = jsonArrayCopy.getJSONObject(it.next());
+                System.out.println(indexKanjiForSet);
+                indexContains.add(indexKanjiForSet);
+                JSONObject jsonObject = jsonArrayCopy.getJSONObject(indexKanjiForSet);
                 String furigana = jsonObject.getString("furigana");
                 String english = jsonObject.getString("english");
-                // SETTERS
                 textViews[i].setText(furigana + " " + english);
-                i++;
             }
             // OVERRIDE
             JSONObject jsonObject = jsonArrayCopy.getJSONObject(indexKanji);
             String furigana = jsonObject.getString("furigana");
             String english = jsonObject.getString("english");
             String kanji = jsonObject.getString("kanji");
+            textViews[indexChoice].setText(furigana + " " + english);
             // SETTERS
             textViewKanji.setText(jsonArray.getJSONObject(indexKanji).getString("kanji"));
             answer[0] = kanji;
             answer[1] = english;
             answer[2] = furigana;
-            textViews[indexChoice].setText(furigana + " " + english);
         } catch (JSONException e) {
             throw new RuntimeException(e);
         } finally {
+            System.out.println("JasonArray Length" + jsonArray.length());
             jsonArray.remove(indexKanji);
+            System.out.println("Populating User Review Data" + user.getUserJapaneseReviewData().size());
         }
     }
     public void clickTextViewChoiceOne(View view) {
         System.out.println("CLICKED ONE");
         checkAnswerAndUpdateScore(0);
-        kanjiChanger();
     }
     public void clickTextViewChoiceTwo(View view) {
-        System.out.println("CLICKED TWO");
+//        System.out.println("CLICKED TWO");
         checkAnswerAndUpdateScore(1);
-        kanjiChanger();
     }
     public void clickTextViewChoiceThree(View view) {
-        System.out.println("CLICKED THREE");
+//        System.out.println("CLICKED THREE");
         checkAnswerAndUpdateScore(2);
-        kanjiChanger();
     }
     public void clickTextViewChoiceFour(View view) {
-        System.out.println("CLICKED FOUR");
+//        System.out.println("CLICKED FOUR");
         checkAnswerAndUpdateScore(3);
-        kanjiChanger();
     }
     public void clickTextViewChoiceFive(View view) {
-        System.out.println("CLICKED FIVE");
+//        System.out.println("CLICKED FIVE");
         checkAnswerAndUpdateScore(4);
-        kanjiChanger();
     }
     @SuppressLint("SetTextI18n")
     private void checkAnswerAndUpdateScore(int index) {
@@ -155,14 +157,15 @@ public class Quiz extends AppCompatActivity {
             user.getUserJapaneseReviewData().add(new JapaneseData(answer[0], answer[1], answer[2]));
             Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show();
         }
+        kanjiChanger();
     }
-//    private void textViewManipulator() {
-//        for(int i = 0; i < 5; i++){
-//            textViews[i].setVisibility(View.INVISIBLE);
-//            int finalI = i;
-//            new Handler().postDelayed(()->{
-//                textViews[finalI].setVisibility(View.VISIBLE);
-//            }, 500);
-//        }
-//    }
+    private void textViewManipulator() {
+        for(int i = 0; i < 5; i++){
+            textViews[i].setVisibility(View.INVISIBLE);
+            int finalI = i;
+            new Handler().postDelayed(()->{
+                textViews[finalI].setVisibility(View.VISIBLE);
+            }, 500);
+        }
+    }
 }
