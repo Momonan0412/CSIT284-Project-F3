@@ -31,11 +31,11 @@ public class Quiz extends AppCompatActivity {
     TextView[] textViews;
     TextView textViewScore;
     ArrayList<JapaneseData> data = new ArrayList<>();
-    DatabaseUtilities databaseUtilities;
+    User user;
     Random random;
     JSONArray jsonArray;
     JSONArray jsonArrayCopy;
-    String answer;
+    String[] answer;
     String level;
     int score = 0;
     @Override
@@ -43,11 +43,15 @@ public class Quiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         StrictModeUtils.enableStrictMode();
-        User user = User.getInstance(); // SINGLETON, BASE ON THE LOGGED IN USER
+        user = User.getInstance(); // SINGLETON, BASE ON THE LOGGED IN USER
         // TODO: HANDLE USER AND IMPLEMENT IN DATABASE
         user.setUserScore(new int[10]);
         // TODO: STORE IN DATABASE, USE "SET VALUE" TO REPLACE ONLY HIGHEST SCORE, SIZE 10 REPRESENTS 10 LEVELS
 
+        // TODD: STORE ALL THE MISTAKES IN QUIZZES IN HERE!
+        user.setUserJapaneseReviewData(new HashSet<>());
+
+        answer = new String[3];
         random = new Random();
         textViews = new TextView[5];
         textViewKanji = findViewById(R.id.textViewKanji);
@@ -103,9 +107,12 @@ public class Quiz extends AppCompatActivity {
             JSONObject jsonObject = jsonArrayCopy.getJSONObject(indexKanji);
             String furigana = jsonObject.getString("furigana");
             String english = jsonObject.getString("english");
+            String kanji = jsonObject.getString("kanji");
             // SETTERS
             textViewKanji.setText(jsonArray.getJSONObject(indexKanji).getString("kanji"));
-            answer = furigana + " " + english;
+            answer[0] = kanji;
+            answer[1] = english;
+            answer[2] = furigana;
             textViews[indexChoice].setText(furigana + " " + english);
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -145,6 +152,7 @@ public class Quiz extends AppCompatActivity {
             textViewScore.setText("Score: " + score);
             Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
         } else {
+            user.getUserJapaneseReviewData().add(new JapaneseData(answer[0], answer[1], answer[2]));
             Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show();
         }
     }

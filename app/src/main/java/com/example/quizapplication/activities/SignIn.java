@@ -30,8 +30,8 @@ public class SignIn extends AppCompatActivity {
                 DatabaseUtilities.signInUser(editTextUsernameInSignIn.getText().toString(),
                         editTextPasswordInSignIn.getText().toString(), getApplicationContext(), (user)->{
                             if (user != null) {
-                                Toast.makeText(getApplicationContext(), "Sign In Successful as " + user.getUsername(), Toast.LENGTH_SHORT).show();
-                                Toast.makeText(getApplicationContext(), user.getProfilePictureURL(), Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getApplicationContext(), "Sign In Successful as " + user.getUsername(), Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getApplicationContext(), user.getProfilePictureURL(), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignIn.this, MainMenu.class);
                                 intent.putExtra("USERNAME_KEY", user.getUsername());
                                 startActivity(intent);

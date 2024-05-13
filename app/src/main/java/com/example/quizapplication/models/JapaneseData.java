@@ -10,6 +10,41 @@ public class JapaneseData {
         this.english = english;
         this.furigana = furigana;
     }
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((kanji == null) ? 0 : kanji.hashCode());
+        result = prime * result + ((english == null) ? 0 : english.hashCode());
+        result = prime * result + ((furigana == null) ? 0 : furigana.hashCode());
+        return result;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        JapaneseData other = (JapaneseData) obj;
+        if (kanji == null) {
+            if (other.kanji != null)
+                return false;
+        } else if (!kanji.equals(other.kanji))
+            return false;
+        if (english == null) {
+            if (other.english != null)
+                return false;
+        } else if (!english.equals(other.english))
+            return false;
+        if (furigana == null) {
+            if (other.furigana != null)
+                return false;
+        } else if (!furigana.equals(other.furigana))
+            return false;
+        return true;
+    }
     public JapaneseData() {
         // For the getKanji method, since we don't need any parameters.
         // @this line "JapaneseData japaneseData = snapshot.getValue(JapaneseData.class);"
