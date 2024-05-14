@@ -19,51 +19,48 @@
         android:id="@+id/txtUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginBottom="30dp"
         android:background="#A9A9A9"
         android:fontFamily="@font/jujutsu_kaisen"
         android:gravity="center"
         android:hint="User's Username"
         android:textColor="#000000"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="25dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="70dp"
+        app:cardCornerRadius="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtUsername"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/imgUserPP"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:foreground="@drawable/selector_cursor"
-            android:onClick="onClickUploadImage"
-            tools:srcCompat="@drawable/ic_launcher_foreground" />
+            android:onClick="onClickUploadImage" />
     </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btnReloadProfilePicture"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="116dp"
         android:text="Reload"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="300dp"
         android:foregroundGravity="center_vertical|center_horizontal"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"

@@ -15,7 +15,7 @@ import com.example.quizapplication.designpattern.User;
 import com.example.quizapplication.utils.DatabaseUtilities;
 import com.example.quizapplication.models.JapaneseData;
 import com.example.quizapplication.R;
-import com.example.quizapplication.utils.StrictModeUtils;
+import com.example.quizapplication.utils.StrictModeUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,7 +23,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Random;
 
 public class Quiz extends AppCompatActivity {
@@ -42,7 +41,7 @@ public class Quiz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        StrictModeUtils.enableStrictMode();
+        StrictModeUtil.enableStrictMode();
         user = User.getInstance(); // SINGLETON, BASE ON THE LOGGED IN USER
         // TODO: HANDLE USER AND IMPLEMENT IN DATABASE
         user.setUserScore(new int[10]);

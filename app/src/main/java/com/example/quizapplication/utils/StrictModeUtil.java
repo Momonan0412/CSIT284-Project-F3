@@ -27,8 +27,8 @@ import android.os.StrictMode;
  * }
  */
 
-public class StrictModeUtils {
-    private StrictModeUtils(){};
+public class StrictModeUtil {
+    private StrictModeUtil(){};
     public static void enableStrictMode() {
         StrictMode.VmPolicy policy = new StrictMode.VmPolicy.Builder()
                 .detectLeakedClosableObjects()
