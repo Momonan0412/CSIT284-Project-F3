@@ -36,8 +36,13 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class DatabaseUtilities {
     private DatabaseUtilities (){}
@@ -147,35 +152,36 @@ public class DatabaseUtilities {
         }
     }
     // TODO: THINK OF A WAY TO UPDATE "STREAK"
-    public static void insertCurrentDateAndStreakDecider(String username, int userStreak){
-        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        DatabaseReference userRef = FirebaseDatabase
-                .getInstance()
-                .getReference()
-                .child("users");
+    public static void insertCurrentDateAndStreakDecider(String username, int userStreak) {
+        String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users");
+
         Query query = userRef.orderByChild("username").equalTo(username);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snp : snapshot.getChildren()) {
-                    String currentUserUsername = snp.child("username").getValue(String.class);
-                    if (currentUserUsername != null && currentUserUsername.equals(username)) {
-//                        System.out.println(date);
-//                        System.out.println(streak);
-                    }
+                if (snapshot.exists()) {
+                    DataSnapshot userSnapshot = snapshot.getChildren().iterator().next();
+                    DatabaseReference currentUserRef = userSnapshot.getRef();
+                    currentUserRef.child("date").setValue(currentDate);
+                    currentUserRef.child("streak").setValue(userStreak);
+                } else {
+                    // Handle case where user with the given username doesn't exist
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Handle possible errors.
             }
         });
+    }
+    public static void insertReviewKanjiData(){
+
     }
     public static void signInUser(String username, String password, Context applicationContext,
                                   final UserExistCallback callback) {
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users");
-//        System.out.println(userRef.toString());
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -185,9 +191,9 @@ public class DatabaseUtilities {
                         String randomId = userSnapshot.getKey(); // Get the random ID
                         String passwordInDatabase = userSnapshot.child("hashedPassword").getValue(String.class);
                         String usernameInDatabase = userSnapshot.child("username").getValue(String.class);
-//                        Log.d("Firebase", "Random ID: " + randomId);
-//                        Log.d("Firebase", "Username: " + usernameInDatabase);
-//                        Log.d("Firebase", "Password: " + passwordInDatabase);
+                        Log.d("Firebase", "Random ID: " + randomId);
+                        Log.d("Firebase", "Username: " + usernameInDatabase);
+                        Log.d("Firebase", "Password: " + passwordInDatabase);
                         if (usernameInDatabase.equals(username)) {
                             if (passwordInDatabase != null && BCrypt.checkpw(password, passwordInDatabase)) {
                                 // Password is not null and matches
@@ -219,7 +225,6 @@ public class DatabaseUtilities {
             }
         });
     }
-
     public static void uploadImageToStorage(Bitmap bitmap, String username,
                                             Context applicationContext) {
         // Create a reference to the Firebase Storage location where the image will be stored
@@ -258,7 +263,6 @@ public class DatabaseUtilities {
     public static void insertUserProfilePicture(String imageUrl, String username) {
         try {
             DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users");
-
             // Attach a listener to the "users" node to traverse all child nodes
             usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -323,5 +327,35 @@ public class DatabaseUtilities {
                 // Handle onCancelled event
             }
         });
+    }
+    public static void saveJapaneseData(String level, String username, HashSet<JapaneseData> japaneseData) {
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users");
+        Query query = userRef.orderByChild("username").equalTo(username);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    DataSnapshot userSnapshot = snapshot.getChildren().iterator().next();
+                    DatabaseReference userDataRef = userSnapshot.getRef().child("japaneseReviewData").child(level);
+                    List<Map<String, String>> serializedData = serializeJapaneseData(japaneseData);
+                    userDataRef.setValue(serializedData); // REPLACE ALL THE THE CURRENT LEVEL
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle possible errors.
+            }
+        });
+    }
+    private static List<Map<String, String>> serializeJapaneseData(HashSet<JapaneseData> japaneseData) {
+        List<Map<String, String>> serializedData = new ArrayList<>();
+        for (JapaneseData data : japaneseData) {
+            Map<String, String> serializedItem = new HashMap<>();
+            serializedItem.put("kanji", data.getKanji());
+            serializedItem.put("english", data.getEnglish());
+            serializedItem.put("furigana", data.getFurigana());
+            serializedData.add(serializedItem);
+        }
+        return serializedData;
     }
 }

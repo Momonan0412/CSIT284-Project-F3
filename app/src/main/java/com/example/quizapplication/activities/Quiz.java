@@ -95,6 +95,7 @@ public class Quiz extends AppCompatActivity {
             // TODO: INSERT INTO THE USER'S DATA: SCORE AND REVIEW DATA
             // SCORE DATABASE BASE ON THE LEVEL X -> SCORE
             // REVIEW DATA BASE ON THE LEVEL X -> REVIEW DATA
+            DatabaseUtilities.saveJapaneseData(level, user.getUsername(), user.getUserJapaneseReviewData());
             return;
         }
         int indexKanji = random.nextInt(this.jsonArray.length());
