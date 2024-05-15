@@ -35,6 +35,9 @@ import org.json.JSONObject;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class DatabaseUtilities {
     private DatabaseUtilities (){}
@@ -143,10 +146,36 @@ public class DatabaseUtilities {
             e.printStackTrace();
         }
     }
+    // TODO: THINK OF A WAY TO UPDATE "STREAK"
+    public static void insertCurrentDateAndStreakDecider(String username, int userStreak){
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        DatabaseReference userRef = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child("users");
+        Query query = userRef.orderByChild("username").equalTo(username);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snp : snapshot.getChildren()) {
+                    String currentUserUsername = snp.child("username").getValue(String.class);
+                    if (currentUserUsername != null && currentUserUsername.equals(username)) {
+//                        System.out.println(date);
+//                        System.out.println(streak);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     public static void signInUser(String username, String password, Context applicationContext,
                                   final UserExistCallback callback) {
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users");
-        System.out.println(userRef.toString());
+//        System.out.println(userRef.toString());
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -156,9 +185,9 @@ public class DatabaseUtilities {
                         String randomId = userSnapshot.getKey(); // Get the random ID
                         String passwordInDatabase = userSnapshot.child("hashedPassword").getValue(String.class);
                         String usernameInDatabase = userSnapshot.child("username").getValue(String.class);
-                        Log.d("Firebase", "Random ID: " + randomId);
-                        Log.d("Firebase", "Username: " + usernameInDatabase);
-                        Log.d("Firebase", "Password: " + passwordInDatabase);
+//                        Log.d("Firebase", "Random ID: " + randomId);
+//                        Log.d("Firebase", "Username: " + usernameInDatabase);
+//                        Log.d("Firebase", "Password: " + passwordInDatabase);
                         if (usernameInDatabase.equals(username)) {
                             if (passwordInDatabase != null && BCrypt.checkpw(password, passwordInDatabase)) {
                                 // Password is not null and matches

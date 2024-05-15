@@ -92,6 +92,9 @@ public class Quiz extends AppCompatActivity {
             for(int i = 0; i < 5; i++) {
                 textViews[i].setText("");
             }
+            // TODO: INSERT INTO THE USER'S DATA: SCORE AND REVIEW DATA
+            // SCORE DATABASE BASE ON THE LEVEL X -> SCORE
+            // REVIEW DATA BASE ON THE LEVEL X -> REVIEW DATA
             return;
         }
         int indexKanji = random.nextInt(this.jsonArray.length());
@@ -123,7 +126,7 @@ public class Quiz extends AppCompatActivity {
         } finally {
             System.out.println("JasonArray Length" + jsonArray.length());
             jsonArray.remove(indexKanji);
-            System.out.println("Populating User Review Data" + user.getUserJapaneseReviewData().size());
+            System.out.println("Length of the User's Review Data" + user.getUserJapaneseReviewData().size());
         }
     }
     public void clickTextViewChoiceOne(View view) {

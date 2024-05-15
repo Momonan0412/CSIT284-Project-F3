@@ -34,46 +34,47 @@ public class MainActivity extends AppCompatActivity {
         btnSignIn.setVisibility(View.INVISIBLE);
         btnSignUp.setVisibility(View.INVISIBLE);
         textViewPleaseWait = findViewById(R.id.textViewPleaseWait);
-        AtomicInteger databaseSize = new AtomicInteger();
-        for(int i = 1; i <= 10; i++){
-            int finalI = i;
-            DatabaseUtilities.getKanji("Level " + i, getApplicationContext()  ,(o) -> {
-                System.out.println("Level " + finalI + " -> " + o.length());
-                databaseSize.addAndGet(o.length());
-                System.out.println("Total Kanji Table Size: " + databaseSize);
-                // TODO: Implement something that would update the table
-                //  ALWAYS CHECK HOW MANY KANJI ARE THERE
-                // @ DATE: 5/7/2024 CURRENT COUNT 351
-                indexCount += finalI;
-                if(indexCount == 55 && databaseSize.get() != 351){
-                    ScrapperTask task = new ScrapperTask(getApplicationContext(), btnSignIn, btnSignUp, loadingPanel, textViewPleaseWait);
-                    task.execute();
-                } else if (indexCount == 55){
-                    System.out.println("The index count is: " + indexCount + " and database size is: " + databaseSize.get());
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            // Set the visibility of buttons and other views after the delay
-                            btnSignIn.setVisibility(View.VISIBLE);
-                            btnSignUp.setVisibility(View.VISIBLE);
-                            loadingPanel.setVisibility(View.GONE);
-                            textViewPleaseWait.setVisibility(View.GONE);
-                        }
-                    }, 2000); // 2000 milliseconds = 2 seconds
-                }
-            });
-        }
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SignIn.class));
-            }
-        });
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SignUp.class));
-            }
-        });
+        DatabaseUtilities.insertCurrentDateAndStreakDecider("res ", 0);
+//        AtomicInteger databaseSize = new AtomicInteger();
+//        for(int i = 1; i <= 10; i++){
+//            int finalI = i;
+//            DatabaseUtilities.getKanji("Level " + i, getApplicationContext()  ,(o) -> {
+//                System.out.println("Level " + finalI + " -> " + o.length());
+//                databaseSize.addAndGet(o.length());
+//                System.out.println("Total Kanji Table Size: " + databaseSize);
+//                // TODO: Implement something that would update the table
+//                //  ALWAYS CHECK HOW MANY KANJI ARE THERE
+//                // @ DATE: 5/7/2024 CURRENT COUNT 351
+//                indexCount += finalI;
+//                if(indexCount == 55 && databaseSize.get() != 351){
+//                    ScrapperTask task = new ScrapperTask(getApplicationContext(), btnSignIn, btnSignUp, loadingPanel, textViewPleaseWait);
+//                    task.execute();
+//                } else if (indexCount == 55){
+//                    System.out.println("The index count is: " + indexCount + " and database size is: " + databaseSize.get());
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            // Set the visibility of buttons and other views after the delay
+//                            btnSignIn.setVisibility(View.VISIBLE);
+//                            btnSignUp.setVisibility(View.VISIBLE);
+//                            loadingPanel.setVisibility(View.GONE);
+//                            textViewPleaseWait.setVisibility(View.GONE);
+//                        }
+//                    }, 2000); // 2000 milliseconds = 2 seconds
+//                }
+//            });
+//        }
+//        btnSignIn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), SignIn.class));
+//            }
+//        });
+//        btnSignUp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), SignUp.class));
+//            }
+//        });
     }
 }

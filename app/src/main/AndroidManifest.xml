@@ -16,6 +16,9 @@
         android:theme="@style/Theme.QuizApplication"
         tools:targetApi="31">
         <activity
+            android:name=".activities.Profile"
+            android:exported="false" />
+        <activity
             android:name=".activities.Study"
             android:exported="false" />
         <activity
