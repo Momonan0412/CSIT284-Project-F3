@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -31,14 +32,15 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
 public class MainMenu extends AppCompatActivity {
-
-    private static final int PICK_IMAGE_REQUEST = 1;
     Button btnStudy, btnReview, btnQuiz, btnExit, btnReloadProfilePicture;
     TextView txtUsername;
     ImageView imageView;
     ActivityResultLauncher<Intent> imagePickLauncher;
     Uri selectedImageUri;
     User user;
+
+    private static final String PREFS_NAME = "MyPrefsFile";
+    private static final String KEY_HAS_RUN = "hasRun";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,21 +50,11 @@ public class MainMenu extends AppCompatActivity {
                         Intent data = result.getData();
                         if(data != null && data.getData() != null) {
                             selectedImageUri = data.getData();
-                            Glide.with(getApplicationContext())
-                                    .asBitmap()
-                                    .load(selectedImageUri)
-                                    .apply(RequestOptions.circleCropTransform())
-                                    .into(new CustomTarget<Bitmap>() {
-                                        @Override
-                                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                                            imageView.setImageBitmap(resource);
-                                            DatabaseUtilities.uploadImageToStorage(resource, user.getUsername(), getApplicationContext());
-                                        }
-                                        @Override
-                                        public void onLoadCleared(@Nullable Drawable placeholder) {
-                                            // Handle the case when Glide clears the resource
-                                        }
-                                    });
+                            AndroidUtil.setProfilePicture(
+                                    getApplicationContext(),
+                                    selectedImageUri,
+                                    imageView
+                            );
                         }
                     }
                 }
@@ -79,16 +71,28 @@ public class MainMenu extends AppCompatActivity {
                 .load(user.getProfilePictureURL())
                 .preload();
         imageView = findViewById(R.id.imgUserPP);
+
         Glide.with(getApplicationContext())
                 .load(user.getProfilePictureURL())
                 .into(imageView);
-        
         Bundle extras = getIntent().getExtras();
         assert extras != null;
         txtUsername.setText(extras.getString("USERNAME_KEY"));
-        btnReloadProfilePicture.setOnClickListener((v)->{
+
+        // Get SharedPreferences
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        // Check if the method has run before
+        boolean hasRun = settings.getBoolean(KEY_HAS_RUN, false);
+        if (!hasRun) {
+            // Run the method
             reloadActivity();
-        });
+
+            // Update the SharedPreferences to mark that the method has run
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean(KEY_HAS_RUN, true);
+            editor.apply();
+        }
+
         btnStudy.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), Study.class));
         });
@@ -108,29 +112,7 @@ public class MainMenu extends AppCompatActivity {
                         return null;
                     }
                 });
-//        // Create an intent to pick an image from the gallery or capture a new image
-//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//        intent.setType("image/*");
-//        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-//            // Get the URI of the selected image
-//            Uri selectedImageUri = data.getData();
-//
-//            imageView.setImageURI(selectedImageUri);
-//
-//            Drawable drawable = imageView.getDrawable();
-//            Bitmap bitmap = null;
-//            if (drawable instanceof BitmapDrawable) {
-//                bitmap = ((BitmapDrawable) drawable).getBitmap();
-//            }
-//            assert bitmap != null;
-//            DatabaseUtilities.uploadImageToStorage(bitmap, user.getUsername(),getApplicationContext());
-//        }
-//    }
     private void reloadActivity() {
         // Finish the current activity
         finish();

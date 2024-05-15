@@ -34,6 +34,7 @@ public class SignIn extends AppCompatActivity {
 //                                Toast.makeText(getApplicationContext(), user.getProfilePictureURL(), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignIn.this, MainMenu.class);
                                 intent.putExtra("USERNAME_KEY", user.getUsername());
+                                intent.putExtra("USER_PROFILE_URL", user.getProfilePictureURL());
                                 startActivity(intent);
                             } else {
                                 Toast.makeText(getApplicationContext(), "Sign In Unsuccessful", Toast.LENGTH_SHORT).show();
