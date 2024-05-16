@@ -13,6 +13,7 @@ import com.example.quizapplication.callbacks.InsertSuccessCallback;
 import com.example.quizapplication.callbacks.JapaneseDataCallBack;
 import com.example.quizapplication.callbacks.UserExistCallback;
 import com.example.quizapplication.callbacks.UserProfileUpdateCallback;
+import com.example.quizapplication.callbacks.UserReviewDataCallBack;
 import com.example.quizapplication.designpattern.User;
 import com.example.quizapplication.models.JapaneseData;
 import com.example.quizapplication.models.UserRegistrationData;
@@ -347,6 +348,43 @@ public class DatabaseUtilities {
             }
         });
     }
+    public static void getReviewData(String username, final UserReviewDataCallBack callback) {
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users");
+        Query query = userRef.orderByChild("username").equalTo(username);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    DataSnapshot userSnapshot = snapshot.getChildren().iterator().next();
+                    DatabaseReference reviewDataRef = userSnapshot.getRef().child("japaneseReviewData");
+                    reviewDataRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            List<JapaneseData> japaneseDataList = new ArrayList<>();
+                            for (DataSnapshot levelSnapshot : dataSnapshot.getChildren()) {
+                                String level = levelSnapshot.getKey();
+                                for (DataSnapshot itemSnapshot : levelSnapshot.getChildren()) {
+                                    JapaneseData japaneseData = itemSnapshot.getValue(JapaneseData.class);
+                                    Log.d("ReviewData", "Level: " + level + ", Data: " + japaneseData);
+                                    japaneseDataList.add(japaneseData);
+                                }
+                            }
+                            callback.onUserReviewDataCallBack(japaneseDataList);
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            // Handle possible errors.
+                        }
+                    });
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle possible errors.
+            }
+        });
+    }
+
     private static List<Map<String, String>> serializeJapaneseData(HashSet<JapaneseData> japaneseData) {
         List<Map<String, String>> serializedData = new ArrayList<>();
         for (JapaneseData data : japaneseData) {

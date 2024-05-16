@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.quizapplication.activities.SignIn;
 import com.example.quizapplication.activities.SignUp;
+import com.example.quizapplication.models.JapaneseData;
 import com.example.quizapplication.utils.DatabaseUtilities;
 import com.example.quizapplication.utils.ScrapperTask;
 import com.google.firebase.FirebaseApp;
@@ -34,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         btnSignIn.setVisibility(View.INVISIBLE);
         btnSignUp.setVisibility(View.INVISIBLE);
         textViewPleaseWait = findViewById(R.id.textViewPleaseWait);
-//        DatabaseUtilities.insertCurrentDateAndStreakDecider("JohnnyTest", 0);
         AtomicInteger databaseSize = new AtomicInteger();
         for(int i = 1; i <= 10; i++){
             int finalI = i;
