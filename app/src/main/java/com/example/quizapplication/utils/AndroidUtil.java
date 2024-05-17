@@ -16,6 +16,10 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.quizapplication.designpattern.User;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class AndroidUtil {
     private AndroidUtil(){}
     public static void setProfilePicture(Context context, Uri selectedImageUri,
@@ -36,5 +40,8 @@ public class AndroidUtil {
                         // Handle the case when Glide clears the resource
                     }
                 });
+    }
+    public static String currentDateGetter(){
+        return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
     }
 }

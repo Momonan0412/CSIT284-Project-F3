@@ -16,14 +16,11 @@ import com.example.quizapplication.utils.DatabaseUtilities;
 import java.util.Iterator;
 
 public class Review extends AppCompatActivity {
-
-    Iterator <JapaneseData> reviewKanjiData;
     User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
-        // TODO: Implement this activity, user the @User's userJapaneseReviewData and populate it base on ?
         user = User.getInstance();
         DatabaseUtilities.getReviewData(user.getUsername(), (data) -> {
             for(JapaneseData d : data){

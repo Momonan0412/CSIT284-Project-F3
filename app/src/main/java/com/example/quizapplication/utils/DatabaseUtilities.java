@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
+import com.example.quizapplication.callbacks.DateAndStreakCallback;
 import com.example.quizapplication.callbacks.InsertSuccessCallback;
 import com.example.quizapplication.callbacks.JapaneseDataCallBack;
 import com.example.quizapplication.callbacks.UserExistCallback;
@@ -153,8 +154,8 @@ public class DatabaseUtilities {
         }
     }
     // TODO: THINK OF A WAY TO UPDATE "STREAK"
-    public static void insertCurrentDateAndStreakDecider(String username, int userStreak) {
-        String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+    public static void updateUsersDateAndStreak(String username, int userStreak) {
+        String currentDate = AndroidUtil.currentDateGetter();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users");
 
         Query query = userRef.orderByChild("username").equalTo(username);
@@ -176,9 +177,6 @@ public class DatabaseUtilities {
                 // Handle possible errors.
             }
         });
-    }
-    public static void insertReviewKanjiData(){
-
     }
     public static void signInUser(String username, String password, Context applicationContext,
                                   final UserExistCallback callback) {
@@ -396,4 +394,26 @@ public class DatabaseUtilities {
         }
         return serializedData;
     }
+    public static void dateAndStreakChecker(String username, final DateAndStreakCallback callback) {
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users");
+        Query query = userRef.orderByChild("username").equalTo(username);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    DataSnapshot userSnapshot = snapshot.getChildren().iterator().next();
+                    String date = userSnapshot.child("date").getValue(String.class);
+                    Integer streakValue = userSnapshot.child("streak").getValue(Integer.class);
+                    int streak = (streakValue != null) ? streakValue : 0;
+                    Log.d("Date and Streak",  "Date: " + date + ", Streak: " + streak);
+                    callback.onUserDateAndStreakCallBack(date, streak);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle possible errors.
+            }
+        });
+    }
+
 }
