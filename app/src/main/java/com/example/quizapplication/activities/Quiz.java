@@ -131,23 +131,18 @@ public class Quiz extends AppCompatActivity {
         }
     }
     public void clickTextViewChoiceOne(View view) {
-//        System.out.println("CLICKED ONE");
         checkAnswerAndUpdateScore(0);
     }
     public void clickTextViewChoiceTwo(View view) {
-//        System.out.println("CLICKED TWO");
         checkAnswerAndUpdateScore(1);
     }
     public void clickTextViewChoiceThree(View view) {
-//        System.out.println("CLICKED THREE");
         checkAnswerAndUpdateScore(2);
     }
     public void clickTextViewChoiceFour(View view) {
-//        System.out.println("CLICKED FOUR");
         checkAnswerAndUpdateScore(3);
     }
     public void clickTextViewChoiceFive(View view) {
-//        System.out.println("CLICKED FIVE");
         checkAnswerAndUpdateScore(4);
     }
     @SuppressLint("SetTextI18n")

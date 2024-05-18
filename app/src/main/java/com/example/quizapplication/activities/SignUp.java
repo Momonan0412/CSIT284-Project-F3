@@ -24,10 +24,12 @@ public class SignUp extends AppCompatActivity {
         editTextConfirmPasswordInSignUp = findViewById(R.id.editTextConfirmPasswordInSignUp);
         btnSignUp = findViewById(R.id.btnSignUp);
         btnSignUp.setOnClickListener(v -> {
-            String username = editTextUsernameInSignUp.getText().toString();
-            String password = editTextPasswordInSignUp.getText().toString();
+            String username = editTextUsernameInSignUp.getText().toString().trim();
+            String password = editTextPasswordInSignUp.getText().toString().trim();
             String confirmPassword = editTextConfirmPasswordInSignUp.getText().toString();
-            if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            if (username.contains(" ") || password.contains(" ") || confirmPassword.contains(" ")) {
+                Toast.makeText(SignUp.this, "No spaces allowed", Toast.LENGTH_SHORT).show();
+            } else if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                 Toast.makeText(SignUp.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
             } else if (!password.equals(confirmPassword)) {
                 Toast.makeText(SignUp.this, "Passwords do not match", Toast.LENGTH_SHORT).show();

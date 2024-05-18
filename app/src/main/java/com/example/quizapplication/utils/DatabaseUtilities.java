@@ -312,14 +312,7 @@ public class DatabaseUtilities {
                     // Get the profile picture link from the user's node
                     String imageUrl = userSnapshot.child("profile_picture").getValue(String.class);
                     if (imageUrl != null) {
-                        User user = User.getInstance();
-                        // Load the profile picture into the user's ImageView
-//                        Picasso.get().load(imageUrl).into(user.getUserProfilePicture());
-                        // Glide fixed the the auto load image problem? or nah
-
                         callback.onUserProfileUpdateChecked(imageUrl);
-
-//                        Glide.with(applicationContext).load(imageUrl).into(user.getUserProfilePicture());
                         break; // No need to continue iterating if the username is unique
                     }
                 }
