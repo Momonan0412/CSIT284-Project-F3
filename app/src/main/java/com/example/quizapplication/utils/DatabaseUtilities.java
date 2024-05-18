@@ -7,9 +7,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.example.quizapplication.callbacks.DateAndStreakCallback;
+import com.example.quizapplication.callbacks.FrequencyLevelCallback;
 import com.example.quizapplication.callbacks.InsertSuccessCallback;
 import com.example.quizapplication.callbacks.JapaneseDataCallBack;
 import com.example.quizapplication.callbacks.UserExistCallback;
@@ -24,7 +26,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -415,5 +419,92 @@ public class DatabaseUtilities {
             }
         });
     }
+    public static void updateUsersLevelFrequency(String username, String level) {
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users");
+        Query query = userRef.orderByChild("username").equalTo(username);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    DataSnapshot userSnapshot = snapshot.getChildren().iterator().next();
+                    DatabaseReference currentUserRef = userSnapshot.getRef();
+                    DatabaseReference levelFrequencyRef = currentUserRef.child("LevelFrequency").child(level);
+                    levelFrequencyRef.runTransaction(new Transaction.Handler() {
 
+                        @NonNull
+                        @Override
+                        public Transaction.Result doTransaction(@NonNull MutableData currentData) {
+                            Integer data = currentData.getValue(Integer.class);
+                            User user = User.getInstance();
+                            user.setLevelFrequency(new int[10]);
+                            int index = Integer.parseInt(level.substring(level.length() - 1));
+                            if (data == null) {
+                                user.getLevelFrequency()[index - 1] += 1;
+                                currentData.setValue(1);
+                            } else {
+                                user.getLevelFrequency()[index - 1] += data + 1;
+                                currentData.setValue(data + 1);
+                            }
+                            return Transaction.success(currentData);
+                        }
+                        @Override
+                        public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
+                            if (error != null) {
+                                Log.e("Firebase", "Transaction failed.", error.toException());
+                            } else if (committed) {
+                                assert currentData != null;
+                                Log.d("Firebase", "Transaction successful: " + currentData.getValue());
+                            }
+                        }
+                    });
+                } else {
+                    Log.e("Firebase", "User with username " + username + " does not exist.");
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Firebase", "Query cancelled.", error.toException());
+            }
+        });
+    }
+    public static void populateFrequency(String username, final FrequencyLevelCallback callback) {
+        int[] freq = new int[10];
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users");
+        Query query = userRef.orderByChild("username").equalTo(username);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    DataSnapshot userSnapshot = snapshot.getChildren().iterator().next();
+                    DatabaseReference currentUserRef = userSnapshot.getRef();
+                    DatabaseReference levelFrequencyRef = currentUserRef.child("LevelFrequency");
+                    levelFrequencyRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()) {
+                                for (DataSnapshot levelSnapshot : snapshot.getChildren()) {
+                                    if(levelSnapshot != null){
+                                        String level = levelSnapshot.getKey();
+                                        assert level != null;
+                                        int index = Integer.parseInt(level.substring(level.length() - 1));
+                                        freq[index - 1] = levelSnapshot.getValue(Integer.class);
+                                    }
+                                }
+                            }
+                            // TODO: ADD CALLBACK HERE
+                            callback.onFrequencyLevelReceived(freq);
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            // Handle possible errors.
+                        }
+                    });
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle possible errors.
+            }
+        });
+    }
 }

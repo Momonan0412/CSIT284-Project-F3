@@ -58,9 +58,11 @@ public class SignIn extends AppCompatActivity {
                                         } catch (ParseException e) {
                                             throw new RuntimeException(e);
                                         } finally {
+                                            user.setUserStreak(streak);
                                             DatabaseUtilities.updateUsersDateAndStreak(user.getUsername(), streak);
                                         }
                                     } else {
+                                        user.setUserStreak(streak);
                                         DatabaseUtilities.updateUsersDateAndStreak(user.getUsername(), 1);
                                     }
                                 });

@@ -16,6 +16,8 @@ public class User {
     private String profilePictureURL;
     private int[] userScore;
     private HashSet<JapaneseData> userJapaneseReviewData;
+    private int userStreak;
+    private int[] levelFrequency;
     public static User getInstance() {
         if(instance == null) {
             instance = new User();
@@ -60,5 +62,20 @@ public class User {
 
     public void setUserScore(int[] userScore) {
         this.userScore = userScore;
+    }
+
+    public int getUserStreak() {
+        return userStreak;
+    }
+    public void setUserStreak(int userStreak) {
+        this.userStreak = userStreak;
+    }
+
+    public int[] getLevelFrequency() {
+        return levelFrequency;
+    }
+
+    public void setLevelFrequency(int [] levelFrequency) {
+        this.levelFrequency = levelFrequency;
     }
 }

@@ -92,10 +92,10 @@ public class Quiz extends AppCompatActivity {
             for(int i = 0; i < 5; i++) {
                 textViews[i].setText("");
             }
-            // TODO: INSERT INTO THE USER'S DATA: SCORE AND REVIEW DATA
-            // SCORE DATABASE BASE ON THE LEVEL X -> SCORE
-            // REVIEW DATA BASE ON THE LEVEL X -> REVIEW DATA
             DatabaseUtilities.saveJapaneseData(level, user.getUsername(), user.getUserJapaneseReviewData());
+            DatabaseUtilities.updateUsersLevelFrequency(user.getUsername(), level);
+            Intent intent = new Intent(Quiz.this, ChooseLevel.class);
+            startActivity(intent);
             return;
         }
         int indexKanji = random.nextInt(this.jsonArray.length());
@@ -131,7 +131,7 @@ public class Quiz extends AppCompatActivity {
         }
     }
     public void clickTextViewChoiceOne(View view) {
-        System.out.println("CLICKED ONE");
+//        System.out.println("CLICKED ONE");
         checkAnswerAndUpdateScore(0);
     }
     public void clickTextViewChoiceTwo(View view) {

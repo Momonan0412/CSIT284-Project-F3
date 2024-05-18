@@ -59,6 +59,7 @@ public class ChooseLevel extends AppCompatActivity {
     }
 
     private void sendValueToReceiverActivity(String value) {
+        // TODO: ADD USER'S FREQUENCY FOR THE LEVEL
         Intent intent = new Intent(ChooseLevel.this, Quiz.class);
         intent.putExtra("key", value);
         startActivity(intent);
