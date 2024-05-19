@@ -45,15 +45,14 @@
         app:layout_constraintGuide_percent="1" />
     <!-- TO BE REVISED -->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
         android:foregroundGravity="center_vertical"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="@+id/linearLayoutGuidelineRight"
+        app:layout_constraintStart_toStartOf="@+id/linearLayoutGuidelineLeft"
+        app:layout_constraintTop_toTopOf="@+id/linearLayoutGuidelineTop">
 
         <Button
             android:id="@+id/btnSignIn"
@@ -95,14 +94,36 @@
 
     </LinearLayout>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/linearLayoutGuidelineTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".40" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/linearLayoutGuidelineLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/linearLayoutGuidelineRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".9" />
+
     <RelativeLayout
         android:id="@+id/loadingPanel"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
         android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="@+id/linearLayoutGuidelineRight"
+        app:layout_constraintStart_toStartOf="@+id/linearLayoutGuidelineLeft"
+        app:layout_constraintTop_toTopOf="@+id/linearLayoutGuidelineTop">
 
         <ProgressBar
             android:layout_width="wrap_content"
@@ -113,16 +134,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/textViewPleaseWait"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayoutGuidelineRight"
+        app:layout_constraintStart_toStartOf="@+id/linearLayoutGuidelineLeft"
+        app:layout_constraintTop_toTopOf="@+id/linearLayoutGuidelineTop">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="340dp"
+            android:layout_marginTop="35dp"
             android:fontFamily="@font/jujutsu_kaisen"
             android:gravity="center"
             android:text="@string/please_wait"

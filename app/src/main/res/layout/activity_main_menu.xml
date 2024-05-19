@@ -11,30 +11,34 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelineBottom"
         app:layout_constraintDimensionRatio="1:2"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toTopOf="@id/guidelineTop"
-        app:layout_constraintBottom_toBottomOf="@+id/guidelineBottom"
         app:srcCompat="@drawable/background" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0"/>
+        app:layout_constraintGuide_percent="0" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="1" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0"/>
+        app:layout_constraintGuide_percent="0" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineBottom"
         android:layout_width="wrap_content"
@@ -45,14 +49,14 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
         android:foregroundGravity="center_vertical|center_horizontal"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/linearLayoutGuidelineTop"
+        app:layout_constraintStart_toStartOf="@+id/linearLayoutGuidelineLeft"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayoutGuidelineRight"
+        tools:layout_editor_absoluteY="250dp">
 
         <Button
             android:id="@+id/btnStudy"
@@ -109,6 +113,7 @@
             android:text="@string/quiz"
             android:textColor="#000000"
             android:textSize="34sp" />
+
         <Button
             android:id="@+id/btnProfile"
             android:layout_width="match_parent"
@@ -126,6 +131,7 @@
             android:text="@string/profile"
             android:textColor="#000000"
             android:textSize="34sp" />
+
         <Button
             android:id="@+id/btnExit"
             android:layout_width="match_parent"
@@ -145,5 +151,26 @@
             android:textSize="34sp" />
 
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/linearLayoutGuidelineTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/linearLayoutGuidelineLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/linearLayoutGuidelineRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
