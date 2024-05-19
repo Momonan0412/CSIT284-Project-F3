@@ -23,6 +23,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
+
 public class AndroidUtil {
     private AndroidUtil(){}
     public static void setProfilePicture(Context context, Uri selectedImageUri,
@@ -31,7 +33,7 @@ public class AndroidUtil {
         Glide.with(context)
                 .asBitmap()
                 .load(selectedImageUri)
-                .apply(RequestOptions.circleCropTransform())
+                .apply(RequestOptions.bitmapTransform(new CropCircleTransformation()))
                 .into(new CustomTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
@@ -46,5 +48,12 @@ public class AndroidUtil {
     }
     public static String currentDateGetter(){
         return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+    }
+    public static void loadProfilePicture(Context context, String imageUrl, ImageView imageView) {
+        Glide.with(context)
+                .asBitmap()
+                .load(imageUrl)
+                .apply(RequestOptions.bitmapTransform(new CropCircleTransformation()))
+                .into(imageView);
     }
 }

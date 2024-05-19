@@ -79,12 +79,7 @@ public class Profile extends AppCompatActivity {
                 }
         );
         txtUsername.setText(user.getUsername());
-        Glide.with(getApplicationContext())
-                .load(user.getProfilePictureURL())
-                .preload();
-        Glide.with(getApplicationContext())
-                .load(user.getProfilePictureURL())
-                .into(imageView);
+        AndroidUtil.loadProfilePicture(getApplicationContext(), user.getProfilePictureURL(), imageView);
     }
     public void onClickUploadImage(View view) {
         ImagePicker.with(this).cropSquare().compress(512).maxResultSize(512, 512)
@@ -95,31 +90,5 @@ public class Profile extends AppCompatActivity {
                         return null;
                     }
                 });
-//        reloadProfilePicture();
-    }
-    private void reloadActivity() {
-        // Finish the current activity
-        finish();
-        // Start a new instance of the same activity
-        Intent intent = getIntent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION); // Optional: To prevent animation
-        startActivity(intent);
-    }
-    private void reloadProfilePicture(){
-        final String PREFS_NAME = "MyPrefsFile";
-        final String KEY_HAS_RUN = "hasRun";
-        // Get SharedPreferences
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        // Check if the method has run before
-        boolean hasRun = settings.getBoolean(KEY_HAS_RUN, false);
-        if (!hasRun) {
-            // Run the method
-            reloadActivity();
-
-            // Update the SharedPreferences to mark that the method has run
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putBoolean(KEY_HAS_RUN, true);
-            editor.apply();
-        }
     }
 }
