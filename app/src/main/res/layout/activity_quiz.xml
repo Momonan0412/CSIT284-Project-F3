@@ -9,15 +9,42 @@
     tools:context=".activities.Quiz">
 
 
+    <!-- TO BE REVISED -->
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/background"
-        android:scaleType="centerCrop"/>
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="1:2"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelineBottom"
+        app:srcCompat="@drawable/background" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1.1" />
+    <!-- TO BE REVISED -->
 
     <TextView
         android:id="@+id/textViewScore"
@@ -27,10 +54,10 @@
         android:fontFamily="@font/jujutsu_kaisen"
         android:foregroundGravity="center"
         android:gravity="center"
-        android:hint="Score"
+        android:hint="@string/score"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        android:textSize="40dp"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,9 +79,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/black_han_sans"
             android:gravity="center"
-            android:hint="KANJI"
+            android:hint="@string/kanji"
             android:textColor="@color/design_default_color_on_secondary"
-            android:textSize="100dp"
+            android:textSize="100sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,10 +109,10 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/clear_background"
             android:gravity="center"
-            android:hint="Choices"
+            android:hint="@string/choices"
             android:onClick="clickTextViewChoiceOne"
             android:textColor="@color/black"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/textViewChoiceTwo"
@@ -94,10 +121,10 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/clear_background"
             android:gravity="center"
-            android:hint="Choices"
+            android:hint="@string/choices"
             android:onClick="clickTextViewChoiceTwo"
             android:textColor="@color/black"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/textViewChoiceThree"
@@ -106,10 +133,10 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/clear_background"
             android:gravity="center"
-            android:hint="Choices"
+            android:hint="@string/choices"
             android:onClick="clickTextViewChoiceThree"
             android:textColor="@color/black"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/textViewChoiceFour"
@@ -118,10 +145,10 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/clear_background"
             android:gravity="center"
-            android:hint="Choices"
+            android:hint="@string/choices"
             android:onClick="clickTextViewChoiceFour"
             android:textColor="@color/black"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/textViewChoiceFive"
@@ -129,10 +156,10 @@
             android:layout_height="wrap_content"
             android:background="@drawable/clear_background"
             android:gravity="center"
-            android:hint="Choices"
+            android:hint="@string/choices"
             android:onClick="clickTextViewChoiceFive"
             android:textColor="@color/black"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
     </LinearLayout>
 

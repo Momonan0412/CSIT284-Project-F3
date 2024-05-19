@@ -7,26 +7,54 @@
     android:layout_height="match_parent"
     tools:context=".activities.Profile">
 
+    <!-- TO BE REVISED -->
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/background"
-        android:scaleType="centerCrop"/>
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="1:2"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelineBottom"
+        app:srcCompat="@drawable/background" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1.1" />
+    <!-- TO BE REVISED -->
 
     <TextView
         android:id="@+id/txtUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="#A9A9A9"
+        android:background="#FFFFCC"
         android:fontFamily="@font/jujutsu_kaisen"
         android:gravity="center"
         android:hint="User's Username"
         android:textColor="#000000"
+        android:shadowColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,9 +77,10 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/jujutsu_kaisen"
         android:gravity="center"
-        android:text="User's Login Streak"
+        android:text="@string/user_s_login_streak"
         android:textColor="@color/black"
-        android:textSize="30dp"
+        android:shadowColor="#000000"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
@@ -71,10 +100,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/jujutsu_kaisen"
-            android:hint="Streak Count"
+            android:hint="@string/streak_count"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:textSize="30dp"
+            android:shadowColor="#000000"
+            android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -88,9 +118,10 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/jujutsu_kaisen"
         android:gravity="center"
-        android:text="Study Level Frequency"
+        android:text="@string/study_level_frequency"
         android:textColor="@color/black"
-        android:textSize="30dp"
+        android:shadowColor="#000000"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
@@ -128,9 +159,9 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:text="Level 01"
+                android:text="@string/level_01"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textViewFrequencyLevel1"
@@ -140,10 +171,10 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:hint="Count #"
+                android:hint="@string/count"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -163,9 +194,9 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:text="Level 02"
+                android:text="@string/level_02"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textViewFrequencyLevel2"
@@ -175,10 +206,10 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:hint="Count #"
+                android:hint="@string/count"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -197,9 +228,9 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:text="Level 03"
+                android:text="@string/level_03"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textViewFrequencyLevel3"
@@ -209,10 +240,10 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:hint="Count #"
+                android:hint="@string/count"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
         <LinearLayout
@@ -232,9 +263,9 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:text="Level 04"
+                android:text="@string/level_04"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textViewFrequencyLevel4"
@@ -244,10 +275,10 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:hint="Count #"
+                android:hint="@string/count"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
         <LinearLayout
@@ -267,9 +298,9 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:text="Level 05"
+                android:text="@string/level_05"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textViewFrequencyLevel5"
@@ -279,10 +310,10 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:hint="Count #"
+                android:hint="@string/count"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
         <LinearLayout
@@ -302,9 +333,9 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:text="Level 06"
+                android:text="@string/level_06"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textViewFrequencyLevel6"
@@ -314,10 +345,10 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:hint="Count #"
+                android:hint="@string/count"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
             <LinearLayout
@@ -337,9 +368,9 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/jujutsu_kaisen"
                     android:gravity="center"
-                    android:text="Level 07"
+                    android:text="@string/level_07"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/textViewFrequencyLevel7"
@@ -349,10 +380,10 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/jujutsu_kaisen"
                     android:gravity="center"
-                    android:hint="Count #"
+                    android:hint="@string/count"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
         <LinearLayout
@@ -372,9 +403,9 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:text="Level 08"
+                android:text="@string/level_08"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textViewFrequencyLevel8"
@@ -384,10 +415,10 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:hint="Count #"
+                android:hint="@string/count"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
         <LinearLayout
@@ -407,9 +438,9 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:text="Level 09"
+                android:text="@string/level_09"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textViewFrequencyLevel9"
@@ -419,10 +450,10 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:hint="Count #"
+                android:hint="@string/count"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
         <LinearLayout
@@ -442,9 +473,9 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:text="Level 10"
+                android:text="@string/level_10"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textViewFrequencyLevel10"
@@ -454,10 +485,10 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/jujutsu_kaisen"
                 android:gravity="center"
-                android:hint="Count #"
+                android:hint="@string/count"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout></LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

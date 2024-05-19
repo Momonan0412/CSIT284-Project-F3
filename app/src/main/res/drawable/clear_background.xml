@@ -16,6 +16,6 @@
         android:right="4dp"
         android:top="4dp" />
     <corners android:radius="4dp" />
-    <solid android:color="#FFFFFF" /> <!-- Set the color to pure white -->
+    <solid android:color="#FFFFCC" /> <!-- Set the color to pure white -->
 </shape>
 
