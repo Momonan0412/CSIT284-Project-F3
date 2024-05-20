@@ -430,7 +430,9 @@ public class DatabaseUtilities {
                             Integer data = currentData.getValue(Integer.class);
                             User user = User.getInstance();
                             user.setLevelFrequency(new int[10]);
-                            int index = Integer.parseInt(level.substring(level.length() - 1));
+                            int spaceIndex = level.indexOf(' ');
+                            String numberString = level.substring(spaceIndex + 1);
+                            int index = Integer.parseInt(numberString);
                             if (data == null) {
                                 user.getLevelFrequency()[index - 1] += 1;
                                 currentData.setValue(1);
@@ -479,7 +481,9 @@ public class DatabaseUtilities {
                                     if(levelSnapshot != null){
                                         String level = levelSnapshot.getKey();
                                         assert level != null;
-                                        int index = Integer.parseInt(level.substring(level.length() - 1));
+                                        int spaceIndex = level.indexOf(' ');
+                                        String numberString = level.substring(spaceIndex + 1);
+                                        int index = Integer.parseInt(numberString);
                                         freq[index - 1] = levelSnapshot.getValue(Integer.class);
                                     }
                                 }

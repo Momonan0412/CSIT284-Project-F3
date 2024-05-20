@@ -46,10 +46,10 @@
     <!-- TO BE REVISED -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineContentRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineContentLeft"
         app:layout_constraintTop_toTopOf="parent">
 
         <ScrollView
@@ -69,9 +69,6 @@
                     android:id="@+id/btnLevelOne"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="60dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="60dp"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
                     android:elevation="10dp"
@@ -88,9 +85,7 @@
                     android:id="@+id/btnLevelTwo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="60dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="60dp"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
                     android:elevation="10dp"
@@ -107,9 +102,7 @@
                     android:id="@+id/btnLevelThree"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="60dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="60dp"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
                     android:elevation="10dp"
@@ -126,9 +119,7 @@
                     android:id="@+id/btnLevelFour"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="60dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="60dp"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
                     android:elevation="10dp"
@@ -145,9 +136,7 @@
                     android:id="@+id/btnLevelFive"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="60dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="60dp"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
                     android:elevation="10dp"
@@ -164,9 +153,7 @@
                     android:id="@+id/btnLevelSix"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="60dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="60dp"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
                     android:elevation="10dp"
@@ -183,9 +170,7 @@
                     android:id="@+id/btnLevelSeven"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="60dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="60dp"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
                     android:elevation="10dp"
@@ -202,9 +187,7 @@
                     android:id="@+id/btnLevelEight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="60dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="60dp"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
                     android:elevation="10dp"
@@ -221,9 +204,7 @@
                     android:id="@+id/btnLevelNine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="60dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="60dp"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
                     android:elevation="10dp"
@@ -240,9 +221,7 @@
                     android:id="@+id/btnLevelTen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="60dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="60dp"
                     android:layout_marginBottom="7.5dp"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
@@ -258,5 +237,17 @@
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineContentRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".7"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineContentLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

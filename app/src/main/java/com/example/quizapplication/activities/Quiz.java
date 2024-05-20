@@ -94,7 +94,7 @@ public class Quiz extends AppCompatActivity {
             }
             DatabaseUtilities.saveJapaneseData(level, user.getUsername(), user.getUserJapaneseReviewData());
             DatabaseUtilities.updateUsersLevelFrequency(user.getUsername(), level);
-            Intent intent = new Intent(Quiz.this, ChooseLevel.class);
+            Intent intent = new Intent(Quiz.this, MainMenu.class);
             startActivity(intent);
             return;
         }
