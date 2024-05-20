@@ -49,10 +49,9 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="@+id/guidelineGeneralRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineGeneralLeft"
+        app:layout_constraintTop_toTopOf="@id/guidelineGeneralTop">
 
         <TextView
             android:id="@+id/textView5"
@@ -74,15 +73,12 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="30dp"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineGeneralRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineGeneralLeft"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
         <TextView
@@ -158,8 +154,10 @@
 
     <Button
         android:id="@+id/btnSignUp"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/ripple"
         android:backgroundTint="#FFFFCC"
@@ -167,8 +165,27 @@
         android:text="@string/submit"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/guidelineGeneralRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineGeneralLeft" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineGeneralLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".2" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineGeneralRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineGeneralTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".2"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

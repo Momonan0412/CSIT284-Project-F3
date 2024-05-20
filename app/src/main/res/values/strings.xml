@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Quiz Application</string>
+    <string name="app_name">OshieteKanji</string>
     <string name="user_s_login_streak">User\'s Login Streak</string>
     <string name="streak_count">Streak Count</string>
     <string name="study_level_frequency">Study Level Frequency</string>

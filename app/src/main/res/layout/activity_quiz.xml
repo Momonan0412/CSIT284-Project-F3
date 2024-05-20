@@ -14,30 +14,34 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelineBottom"
         app:layout_constraintDimensionRatio="1:2"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toTopOf="@id/guidelineTop"
-        app:layout_constraintBottom_toBottomOf="@+id/guidelineBottom"
         app:srcCompat="@drawable/background" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0"/>
+        app:layout_constraintGuide_percent="0" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="1" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0"/>
+        app:layout_constraintGuide_percent="0" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineBottom"
         android:layout_width="wrap_content"
@@ -45,12 +49,31 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="1" />
     <!-- TO BE REVISED -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineGeneralLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineGeneralRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineGeneralTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".1"/>
 
     <TextView
         android:id="@+id/textViewScore"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:fontFamily="@font/jujutsu_kaisen"
         android:foregroundGravity="center"
         android:gravity="center"
@@ -58,20 +81,19 @@
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/kanjiContainer"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineGeneralRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineGeneralLeft" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/kanjiContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         android:background="@drawable/clear_background"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="@+id/guidelineGeneralRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineGeneralLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineGeneralTop">
 
         <TextView
             android:id="@+id/textViewKanji"
@@ -82,7 +104,6 @@
             android:hint="@string/kanji"
             android:textColor="@color/design_default_color_on_secondary"
             android:textSize="100sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -90,7 +111,7 @@
 
     <LinearLayout
         android:id="@+id/choicesContainer"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="30dp"
@@ -98,8 +119,8 @@
         android:background="@drawable/clear_background"
         android:orientation="vertical"
         android:padding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/kanjiContainer">
 
         <TextView
