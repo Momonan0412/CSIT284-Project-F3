@@ -52,7 +52,7 @@ import java.util.Map;
 
 public class DatabaseUtilities {
     private DatabaseUtilities (){}
-    public static void addKanji(String level, String kanji, String furigana, String english, Context applicationContext) {
+    public static void addKanji(String level, String kanji, String furigana, String english, String mnemonics, Context applicationContext) {
         DatabaseReference kanjiRef = FirebaseDatabase.getInstance().getReference().child("kanji").child(level);
         // Querying the database to check if the email already exists to prevent duplication
         Query query = kanjiRef.orderByChild("kanji").equalTo(kanji);
@@ -63,7 +63,7 @@ public class DatabaseUtilities {
 //                    Toast.makeText(applicationContext, "Kanji already exists", Toast.LENGTH_SHORT).show();
                     Toast.makeText(applicationContext, "Kanji " + level + " Is Already Up to Date", Toast.LENGTH_SHORT).show();
                 } else {
-                    kanjiRef.push().setValue(new JapaneseData(kanji, english, furigana))
+                    kanjiRef.push().setValue(new JapaneseData(kanji, english, furigana, mnemonics))
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -101,6 +101,7 @@ public class DatabaseUtilities {
                             jsonObject.put("kanji", japaneseData.getKanji());
                             jsonObject.put("furigana", japaneseData.getFurigana());
                             jsonObject.put("english", japaneseData.getEnglish());
+                            jsonObject.put("mnemonic", japaneseData.getMnemonic());
                             jsonArray.put(jsonObject);
                         } catch (JSONException e) {
                             e.printStackTrace();

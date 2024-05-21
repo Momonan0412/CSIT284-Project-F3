@@ -17,6 +17,10 @@ import com.example.quizapplication.utils.DatabaseUtilities;
 import com.example.quizapplication.utils.ScrapperTask;
 import com.google.firebase.FirebaseApp;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         btnSignIn.setVisibility(View.INVISIBLE);
         btnSignUp.setVisibility(View.INVISIBLE);
         textViewPleaseWait = findViewById(R.id.textViewPleaseWait);
+
         AtomicInteger databaseSize = new AtomicInteger();
         for(int i = 1; i <= 10; i++){
             int finalI = i;

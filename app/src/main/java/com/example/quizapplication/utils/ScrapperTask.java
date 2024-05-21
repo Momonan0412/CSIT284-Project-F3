@@ -53,26 +53,36 @@ public class ScrapperTask extends AsyncTask<Void, Void, Void> {
             for (Element k : kanjiData) {
                 String level = k.select(".character-grid__header-text").text();
                 System.out.println(level);
-//                if(level.equals("Level 8") || level.equals("Level 9") || level.equals("Level 10")){}
-                Elements dataElements = k.select(".subject-character__content");
-                for (Element data : dataElements) {
-                    String kanji = data.select(".subject-character__characters").text();
-                    String furigana = data.select(".subject-character__reading").text();
-                    String englishMeaningURL = "https://www.wanikani.com/kanji/" + kanji;
-                    Document englishDocument = Jsoup.connect(englishMeaningURL).get();
-                    String getHTMLQueryForEnglishMeaning = ".subject-section__meanings-items";
-                    Elements englishMeaningData = englishDocument.select(getHTMLQueryForEnglishMeaning);
-                    StringBuilder englishMeanings = new StringBuilder();
-                    int size = englishMeaningData.size();
-                    for(int i = 0; i < size; i++){
-                        String english = englishMeaningData.get(i).text();
-                        englishMeanings.append(english);
-                        if(i < size - 1){
-                            englishMeanings.append(", ");
+//                if(level.equals("Level 6") || level.equals("Level 7") || level.equals("Level 9") || level.equals("Level 10")){}
+                    Elements dataElements = k.select(".subject-character__content");
+                    for (Element data : dataElements) {
+                        String kanji = data.select(".subject-character__characters").text();
+                        String furigana = data.select(".subject-character__reading").text();
+                        String englishMeaningURL = "https://www.wanikani.com/kanji/" + kanji;
+                        Document englishDocument = Jsoup.connect(englishMeaningURL).get();
+                        String getCssQueryForEnglishMeaning = ".subject-section__meanings-items";
+                        Elements englishMeaningData = englishDocument.select(getCssQueryForEnglishMeaning);
+                        StringBuilder englishMeanings = new StringBuilder();
+                        int size = englishMeaningData.size();
+                        for(int i = 0; i < size; i++){
+                            String english = englishMeaningData.get(i).text();
+                            englishMeanings.append(english);
+                            if(i < size - 1){
+                                englishMeanings.append(", ");
+                            }
                         }
+                        String mnemonicQuery = ".subject-section__text";
+                        String mnemonic  = englishDocument.select(mnemonicQuery).text();
+
+    //                    String mnemonicHintQuery = ".subject-hint__text";
+    //                    String getHintMnemonic  = englishDocument.select(mnemonicHintQuery).text();
+    //                    System.out.println("Kanji: " + kanji);
+    //                    System.out.println("Furigana: " + furigana);
+    //                    System.out.println("English: " + englishMeanings);
+    //                    System.out.println("Mnemonic: " + getMnemonic);
+    //                    System.out.println("Hint: " + getHintMnemonic);
+                        DatabaseUtilities.addKanji(level, kanji, furigana, String.valueOf(englishMeanings), mnemonic, applicationContext);
                     }
-                    DatabaseUtilities.addKanji(level, kanji, furigana, String.valueOf(englishMeanings), applicationContext);
-                }
             }
         } catch (IOException e) {
             e.printStackTrace();

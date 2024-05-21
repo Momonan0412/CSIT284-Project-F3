@@ -4,11 +4,16 @@ public class JapaneseData {
     private String kanji;
     private String english;
     private String furigana;
+    private String mnemonic;
 
     public JapaneseData(String kanji, String english, String furigana) {
         this.kanji = kanji;
         this.english = english;
         this.furigana = furigana;
+    }
+    public JapaneseData(String kanji, String english, String furigana, String mnemonic) {
+        this(kanji, english, furigana);
+        this.mnemonic = mnemonic;
     }
     public JapaneseData() {
         // For the getKanji method, since we don't need any parameters.
@@ -36,5 +41,13 @@ public class JapaneseData {
 
     public void setFurigana(String furigana) {
         this.furigana = furigana;
+    }
+
+    public String getMnemonic() {
+        return mnemonic;
+    }
+
+    public void setMnemonic(String mnemonic) {
+        this.mnemonic = mnemonic;
     }
 }
