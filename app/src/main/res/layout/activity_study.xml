@@ -9,39 +9,245 @@
 
     <!-- TO BE REVISED -->
     <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelineBottom"
         app:layout_constraintDimensionRatio="1:2"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toTopOf="@id/guidelineTop"
-        app:layout_constraintBottom_toBottomOf="@+id/guidelineBottom"
         app:srcCompat="@drawable/background" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0"/>
+        app:layout_constraintGuide_percent="0" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="1" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0"/>
+        app:layout_constraintGuide_percent="0" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="1" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/vlDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="600dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:foregroundGravity="center_vertical"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <Button
+                    android:id="@+id/btnStudy1"
+                    android:layout_width="100dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="Level 01"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy2"
+                    android:layout_width="100dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="LEVEL 02"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy3"
+                    android:layout_width="100dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="Level 03"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy4"
+                    android:layout_width="100dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="LEVEL 04"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy5"
+                    android:layout_width="100dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="LEVEL 05"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy6"
+                    android:layout_width="100dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="LEVEL 06"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy7"
+                    android:layout_width="100dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="LEVEL 07"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy8"
+                    android:layout_width="100dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="LEVEL 08"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy9"
+                    android:layout_width="100dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="LEVEL 09"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy10"
+                    android:layout_width="100dp"
+                    android:layout_height="75dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="LEVEL 10"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fgDisplay"
+            android:layout_width="250dp"
+            android:layout_height="500dp"
+            android:layout_marginTop="83dp"
+            android:layout_marginBottom="45dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <!-- TO BE REVISED -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
