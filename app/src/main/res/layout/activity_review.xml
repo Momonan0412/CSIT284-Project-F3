@@ -86,51 +86,61 @@
       app:layout_constraintTop_toBottomOf="@+id/kanjiContainer">
 
     <TextView
+        android:id="@+id/txtvChoice1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:background="@drawable/clear_background"
         android:gravity="center"
         android:hint="@string/choices"
+        android:onClick="onClicktxtChoice1"
         android:textColor="@color/black"
         android:textSize="30sp" />
 
     <TextView
+        android:id="@+id/txtvChoice2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:background="@drawable/clear_background"
         android:gravity="center"
         android:hint="@string/choices"
+        android:onClick="onClicktxtChoice2"
         android:textColor="@color/black"
         android:textSize="30sp" />
 
     <TextView
+        android:id="@+id/txtvChoice3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:background="@drawable/clear_background"
         android:gravity="center"
         android:hint="@string/choices"
+        android:onClick="onClicktxtChoice3"
         android:textColor="@color/black"
         android:textSize="30sp" />
 
     <TextView
+        android:id="@+id/txtvChoice4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:background="@drawable/clear_background"
         android:gravity="center"
         android:hint="@string/choices"
+        android:onClick="onClicktxtChoice4"
         android:textColor="@color/black"
         android:textSize="30sp" />
 
     <TextView
+        android:id="@+id/txtvChoice5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/clear_background"
         android:gravity="center"
         android:hint="@string/choices"
+        android:onClick="onClicktxtChoice5"
         android:textColor="@color/black"
         android:textSize="30sp" />
 
