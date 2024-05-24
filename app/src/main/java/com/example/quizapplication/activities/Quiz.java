@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
 
 public class Quiz extends AppCompatActivity {
@@ -38,10 +40,15 @@ public class Quiz extends AppCompatActivity {
     String level;
     int score = 0;
     @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.clear();
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        StrictModeUtil.enableStrictMode();
+//        StrictModeUtil.enableStrictMode();
         user = User.getInstance(); // SINGLETON, BASE ON THE LOGGED IN USER
         // TODO: HANDLE USER AND IMPLEMENT IN DATABASE
         user.setUserScore(new int[10]);
@@ -101,15 +108,19 @@ public class Quiz extends AppCompatActivity {
         int indexKanji = random.nextInt(this.jsonArray.length());
         int indexChoice = random.nextInt(5);
         try {
-            ArrayList<Integer> indexContains = new ArrayList<>();
-            for(int i = 0; i < 5; i++) {
-                int indexKanjiForSet = random.nextInt(jsonArrayCopy.length());
+            HashSet<Integer> indexContains = new HashSet<>();
+            while(indexContains.size() < 5) {
+                indexContains.add(random.nextInt(jsonArrayCopy.length()));
+            }
+            int index = 0;
+            Iterator<Integer> iterator = indexContains.iterator();
+            while(iterator.hasNext()) {
+                int indexKanjiForSet = iterator.next();
                 System.out.println(indexKanjiForSet);
-                indexContains.add(indexKanjiForSet);
                 JSONObject jsonObject = jsonArrayCopy.getJSONObject(indexKanjiForSet);
                 String furigana = jsonObject.getString("furigana");
                 String english = jsonObject.getString("english");
-                textViews[i].setText(furigana + " " + english);
+                textViews[index++].setText(furigana + " " + english);
             }
             // OVERRIDE
             JSONObject jsonObject = jsonArrayCopy.getJSONObject(indexKanji);

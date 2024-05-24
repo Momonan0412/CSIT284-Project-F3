@@ -5,21 +5,22 @@
     android:id="@+id/frgLevel1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Level1">
+    tools:context=".fragments.Level">
 
     <!-- TODO: Update blank fragment layout -->
 
     <ScrollView
         android:id="@+id/fgScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:id="@+id/orient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:layout_gravity="center"/>
     </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,21 +29,22 @@
 
         <ScrollView
             android:id="@+id/fgDisplayScrollView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_constraintEnd_toEndOf="@+id/fragmentGuidelineRight"
+            app:layout_constraintStart_toStartOf="@+id/fragmentGuidelineLeft"
+            app:layout_constraintTop_toTopOf="@+id/fragmentGuidelineTop">
 
             <LinearLayout
                 android:id="@+id/llDisplayStudy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FFFFCC"
+                android:background="#C3FFFFAF"
                 android:backgroundTint="#FFFFCC"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="25sp">
 
                 <TextView
                     android:id="@+id/frgTxtKanji"
@@ -84,6 +86,25 @@
 
             </LinearLayout>
         </ScrollView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/fragmentGuidelineTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/fragmentGuidelineLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/fragmentGuidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="1"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

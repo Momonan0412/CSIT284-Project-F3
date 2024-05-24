@@ -1,4 +1,4 @@
-package com.example.quizapplication.Fragments;
+package com.example.quizapplication.fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +27,10 @@ import org.json.JSONObject;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Level1#newInstance} factory method to
+ * Use the {@link Level#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Level1 extends Fragment {
+public class Level extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,11 +43,11 @@ public class Level1 extends Fragment {
     LinearLayout layout;
 
     TextView kanji, furina, english,mnemonic;
-//    LinearLayout displayStuff;
+    //    LinearLayout displayStuff;
     ScrollView scroll,displayStuff;
     JSONArray jsonArray;
 
-    public Level1() {
+    public Level() {
         // Required empty public constructor
     }
 
@@ -59,8 +60,8 @@ public class Level1 extends Fragment {
      * @return A new instance of fragment Level1.
      */
     // TODO: Rename and change types and number of parameters
-    public static Level1 newInstance(String param1, String param2) {
-        Level1 fragment = new Level1();
+    public static Level newInstance(String param1, String param2) {
+        Level fragment = new Level();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -84,7 +85,7 @@ public class Level1 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_level1, container, false);
+        return inflater.inflate(R.layout.fragment_level, container, false);
     }
 
     //Reference ======== https://stackoverflow.com/questions/6495898/findviewbyid-in-fragment =========
@@ -100,19 +101,24 @@ public class Level1 extends Fragment {
         displayStuff = getView().findViewById(R.id.fgDisplayScrollView);
 //        displayStuff = getView().findViewById(R.id.llDisplayStudy);
 
+//        layout.setGravity(Gravity.CENTER);
         displayStuff.setClickable(false);
         displayStuff.setVisibility(View.INVISIBLE);
+        layout.setBackground(getResources().getDrawable(R.drawable.rounded_corner));
 
 //        displayStuff.setBackground();
 //        displayStuff.setPadding(2,2,2,2);
 //        displayStuff.setBackgroundColor(Color.GRAY);
 
-
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) layout.getLayoutParams();
+        int marginDP = 500;
+        float scale = getResources().getDisplayMetrics().density;
+        int marginPX = (int) (marginDP * scale + 0.5f);
+        params.topMargin = marginPX;
 
         System.out.println(layout.isActivated());
         DatabaseUtilities.getKanji("Level "+ Study.getLevel(),getContext(),(data)->{
             this.jsonArray = data;
-            System.out.println(this.jsonArray.length()+"HENFDJFDLFNDSFLEN");
             Button[] btnArray = new Button[jsonArray.length()];
             try{
                 for(int i=0; i<jsonArray.length();i++){
@@ -123,20 +129,22 @@ public class Level1 extends Fragment {
                     String kanjiSymbol = jsonObject.getString("kanji");
                     btn.setText(kanjiSymbol);
                     btn.setTextSize(30);
-                    btn.setPadding(10, 10, 10, 10);
+//                    btn.setPadding(10, 10, 10, 10);
                     btn.setId(i);
                     btnArray[i] = btn;
 
 
                     layout.addView(btn);
-
                 }
             }catch (JSONException e){
                 e.printStackTrace();
             }
 
+
+
             for(int i = 0; i< jsonArray.length();i++){
                 int idkWtfImStillDoing = i;
+                btnArray[i].setTextColor(Color.BLACK);
                 btnArray[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -152,19 +160,22 @@ public class Level1 extends Fragment {
                             displayStuff.setClickable(true);
                             displayStuff.setVisibility(View.VISIBLE);
                             scroll.setVisibility(View.INVISIBLE);
-
                             kanji.setTextSize(50);
                             kanji.setText(kanjiSymbol);
                             english.setText(englishMeaning);
                             furina.setText(furigana);
                             mnemonic.setText(mnemonic1);
 
+//                            kanji.setGravity(Gravity.CENTER);
+//                            english.setGravity(Gravity.CENTER);
+//                            furina.setGravity(Gravity.CENTER);
+//                            mnemonic.setGravity(Gravity.CENTER);
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
                     }
                 });
-
+                btnArray[i].setBackground(getResources().getDrawable(R.drawable.rounded_scroll));
             }
         });
 

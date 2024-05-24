@@ -49,36 +49,32 @@
         app:layout_constraintGuide_percent="1" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/vlDisplay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"></LinearLayout>
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop">
 
         <HorizontalScrollView
             android:id="@+id/horizontalScrollView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="600dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toEndOf="@id/levelButtonGuidelineRight"
+            app:layout_constraintStart_toStartOf="@+id/levelButtonGuidelineLeft"
+            app:layout_constraintBottom_toBottomOf="@+id/levelButtonGuidelineBottom">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:foregroundGravity="center_vertical"
-                android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp">
 
                 <Button
                     android:id="@+id/btnStudy1"
-                    android:layout_width="100dp"
-                    android:layout_height="75dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
@@ -93,8 +89,9 @@
 
                 <Button
                     android:id="@+id/btnStudy2"
-                    android:layout_width="100dp"
-                    android:layout_height="75dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
@@ -109,8 +106,9 @@
 
                 <Button
                     android:id="@+id/btnStudy3"
-                    android:layout_width="100dp"
-                    android:layout_height="75dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
@@ -125,8 +123,9 @@
 
                 <Button
                     android:id="@+id/btnStudy4"
-                    android:layout_width="100dp"
-                    android:layout_height="75dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
                     android:elevation="10dp"
@@ -140,8 +139,9 @@
 
                 <Button
                     android:id="@+id/btnStudy5"
-                    android:layout_width="100dp"
-                    android:layout_height="75dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
                     android:elevation="10dp"
@@ -155,8 +155,9 @@
 
                 <Button
                     android:id="@+id/btnStudy6"
-                    android:layout_width="100dp"
-                    android:layout_height="75dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
                     android:elevation="10dp"
@@ -170,8 +171,9 @@
 
                 <Button
                     android:id="@+id/btnStudy7"
-                    android:layout_width="100dp"
-                    android:layout_height="75dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
                     android:elevation="10dp"
@@ -185,8 +187,9 @@
 
                 <Button
                     android:id="@+id/btnStudy8"
-                    android:layout_width="100dp"
-                    android:layout_height="75dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
@@ -201,8 +204,9 @@
 
                 <Button
                     android:id="@+id/btnStudy9"
-                    android:layout_width="100dp"
-                    android:layout_height="75dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
@@ -217,8 +221,9 @@
 
                 <Button
                     android:id="@+id/btnStudy10"
-                    android:layout_width="100dp"
-                    android:layout_height="75dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/ripple"
                     android:backgroundTint="#FFFFCC"
@@ -236,15 +241,52 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fgDisplay"
-            android:layout_width="250dp"
-            android:layout_height="500dp"
-            android:layout_marginTop="83dp"
-            android:layout_marginBottom="45dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+            android:layout_width="0dp"
+            android:layout_height="550dp"
+            app:layout_constraintEnd_toEndOf="@+id/fgDisplayGuidelineRight"
+            app:layout_constraintStart_toStartOf="@+id/fgDisplayGuidelineLeft"
+            app:layout_constraintTop_toTopOf="@+id/fgDisplayGuidelineTop" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/fgDisplayGuidelineLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/fgDisplayGuidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".9" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/fgDisplayGuidelineTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".12" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/levelButtonGuidelineLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".1"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/levelButtonGuidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".9" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/levelButtonGuidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
