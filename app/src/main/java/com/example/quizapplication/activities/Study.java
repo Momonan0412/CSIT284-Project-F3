@@ -133,6 +133,13 @@ public class Study extends AppCompatActivity {
                 .setReorderingAllowed(true)
                 .addToBackStack(null)
                 .commit();
+            level = lvl;
+            manage = getSupportFragmentManager();
+            manage.beginTransaction()
+                    .replace(R.id.fgDisplay,Level.class, null)
+                    .setReorderingAllowed(true)
+                    .addToBackStack(null)
+                    .commit();
 
     }
 
