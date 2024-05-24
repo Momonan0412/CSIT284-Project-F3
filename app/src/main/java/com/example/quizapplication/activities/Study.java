@@ -54,145 +54,94 @@ public class Study extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                level = 1;
-                System.out.println("this is clicked");
-                FragmentManager manage = getSupportFragmentManager();
-                manage.beginTransaction()
-                        .replace(R.id.fgDisplay,Level1.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack(null)
-                        .commit();
+                openFragment(1);
+
 
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                level = 2;
-                System.out.println("this is clicked");
-                FragmentManager manage = getSupportFragmentManager();
-                manage.beginTransaction()
-                        .replace(R.id.fgDisplay,Level1.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack(null)
-                        .commit();
+                openFragment(2);
+
 
             }
         });
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                level = 3;
-                System.out.println("this is clicked");
-                FragmentManager manage = getSupportFragmentManager();
-                manage.beginTransaction()
-                        .replace(R.id.fgDisplay,Level1.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack(null)
-                        .commit();
+                openFragment(3);
+
 
             }
         });
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                level = 4;
-                System.out.println("this is clicked");
-                FragmentManager manage = getSupportFragmentManager();
-                manage.beginTransaction()
-                        .replace(R.id.fgDisplay,Level1.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack(null)
-                        .commit();
+                openFragment(4);
+
 
             }
         });
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                level = 5;
-                System.out.println("this is clicked");
-                FragmentManager manage = getSupportFragmentManager();
-                manage.beginTransaction()
-                        .replace(R.id.fgDisplay,Level1.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack(null)
-                        .commit();
+                openFragment(5);
+
 
             }
         });
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                level = 6;
-                System.out.println("this is clicked");
-                FragmentManager manage = getSupportFragmentManager();
-                manage.beginTransaction()
-                        .replace(R.id.fgDisplay,Level1.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack(null)
-                        .commit();
+                openFragment(6);
+
 
             }
         });
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                level = 7;
-                System.out.println("this is clicked");
-                FragmentManager manage = getSupportFragmentManager();
-                manage.beginTransaction()
-                        .replace(R.id.fgDisplay,Level1.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack(null)
-                        .commit();
+                openFragment(7);
+
 
             }
         });
         btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                level = 8;
-                System.out.println("this is clicked");
-                FragmentManager manage = getSupportFragmentManager();
-                manage.beginTransaction()
-                        .replace(R.id.fgDisplay,Level1.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack(null)
-                        .commit();
+                openFragment(8);
+
 
             }
         });
         btn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                level = 9;
-                System.out.println("this is clicked");
-                FragmentManager manage = getSupportFragmentManager();
-                manage.beginTransaction()
-                        .replace(R.id.fgDisplay,Level1.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack(null)
-                        .commit();
+                openFragment(9);
+
 
             }
         });
         btn10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                level = 10;
-                System.out.println("this is clicked");
-                FragmentManager manage = getSupportFragmentManager();
-                manage.beginTransaction()
-                        .replace(R.id.fgDisplay,Level1.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack(null)
-                        .commit();
+                openFragment(10);
 
             }
         });
         // TODO: Implement this activity like flashcard ish
 //>>>>>>> Stashed changes
+
+    }
+    private void openFragment(int lvl){
+            level = lvl;
+            FragmentManager manage = getSupportFragmentManager();
+            manage.beginTransaction()
+                    .replace(R.id.fgDisplay,Level1.class, null)
+                    .setReorderingAllowed(true)
+                    .addToBackStack(null)
+                    .commit();
 
     }
 

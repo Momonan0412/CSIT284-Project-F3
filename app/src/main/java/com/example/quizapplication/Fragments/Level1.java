@@ -102,6 +102,7 @@ public class Level1 extends Fragment {
 
         displayStuff.setClickable(false);
         displayStuff.setVisibility(View.INVISIBLE);
+        layout.setBackground(getResources().getDrawable(R.drawable.rounded_corner));
 
 //        displayStuff.setBackground();
 //        displayStuff.setPadding(2,2,2,2);

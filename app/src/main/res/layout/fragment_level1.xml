@@ -39,10 +39,11 @@
                 android:id="@+id/llDisplayStudy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FFFFCC"
+                android:background="#C3FFFFAF"
                 android:backgroundTint="#FFFFCC"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="25sp">
 
                 <TextView
                     android:id="@+id/frgTxtKanji"
