@@ -18,7 +18,6 @@
       app:layout_constraintEnd_toEndOf="@id/guidelineRight"
       app:layout_constraintStart_toStartOf="@id/guidelineLeft"
       app:layout_constraintTop_toTopOf="@id/guidelineTop"
-      app:layout_constraintBottom_toBottomOf="@+id/guidelineBottom"
       app:srcCompat="@drawable/background" />
   <androidx.constraintlayout.widget.Guideline
       android:id="@+id/guidelineLeft"
