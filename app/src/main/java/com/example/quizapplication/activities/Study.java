@@ -46,56 +46,42 @@ public class Study extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openFragment(1);
-
-
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openFragment(2);
-
-
             }
         });
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openFragment(3);
-
-
             }
         });
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openFragment(4);
-
-
             }
         });
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openFragment(5);
-
-
             }
         });
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openFragment(6);
-
-
             }
         });
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openFragment(7);
-
-
             }
         });
         btn8.setOnClickListener(new View.OnClickListener() {
@@ -121,9 +107,6 @@ public class Study extends AppCompatActivity {
 
             }
         });
-        // TODO: Implement this activity like flashcard ish
-//>>>>>>> Stashed changes
-
     }
     private void openFragment(int lvl){
         level = lvl;
@@ -142,6 +125,4 @@ public class Study extends AppCompatActivity {
                     .commit();
 
     }
-
-
 }

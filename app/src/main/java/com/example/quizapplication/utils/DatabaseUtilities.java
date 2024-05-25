@@ -195,9 +195,9 @@ public class DatabaseUtilities {
                         String randomId = userSnapshot.getKey(); // Get the random ID
                         String passwordInDatabase = userSnapshot.child("hashedPassword").getValue(String.class);
                         String usernameInDatabase = userSnapshot.child("username").getValue(String.class);
-                        Log.d("Firebase", "Random ID: " + randomId);
-                        Log.d("Firebase", "Username: " + usernameInDatabase);
-                        Log.d("Firebase", "Password: " + passwordInDatabase);
+//                        Log.d("Firebase", "Random ID: " + randomId);
+//                        Log.d("Firebase", "Username: " + usernameInDatabase);
+//                        Log.d("Firebase", "Password: " + passwordInDatabase);
                         if (usernameInDatabase.equals(username)) {
                             if (passwordInDatabase != null && BCrypt.checkpw(password, passwordInDatabase)) {
                                 // Password is not null and matches
@@ -212,14 +212,17 @@ public class DatabaseUtilities {
                             } else {
                                 // Password is null or does not match
                                 callback.onUserExistChecked(null);
+                                Toast.makeText(applicationContext, "Sign In Unsuccessful", Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             // Username does not match
                             callback.onUserExistChecked(null);
+                            Toast.makeText(applicationContext, "Sign In Unsuccessful", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {
                     callback.onUserExistChecked(null);
+                    Toast.makeText(applicationContext, "Sign In Unsuccessful", Toast.LENGTH_SHORT).show();
                 }
             }
 

@@ -49,203 +49,20 @@
         app:layout_constraintGuide_percent="1" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
-        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toTopOf="@id/guidelineTop">
-
-        <HorizontalScrollView
-            android:id="@+id/horizontalScrollView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/levelButtonGuidelineRight"
-            app:layout_constraintStart_toStartOf="@+id/levelButtonGuidelineLeft"
-            app:layout_constraintBottom_toBottomOf="@+id/levelButtonGuidelineBottom">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp">
-
-                <Button
-                    android:id="@+id/btnStudy1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/ripple"
-                    android:backgroundTint="#FFFFCC"
-                    android:elevation="10dp"
-                    android:fontFamily="@font/jujutsu_kaisen"
-                    android:shadowColor="#FFFFFF"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:text="Level 01"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
-
-                <Button
-                    android:id="@+id/btnStudy2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/ripple"
-                    android:backgroundTint="#FFFFCC"
-                    android:elevation="10dp"
-                    android:fontFamily="@font/jujutsu_kaisen"
-                    android:shadowColor="#FFFFFF"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:text="LEVEL 02"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
-
-                <Button
-                    android:id="@+id/btnStudy3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/ripple"
-                    android:backgroundTint="#FFFFCC"
-                    android:elevation="10dp"
-                    android:fontFamily="@font/jujutsu_kaisen"
-                    android:shadowColor="#FFFFFF"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:text="Level 03"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
-
-                <Button
-                    android:id="@+id/btnStudy4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/ripple"
-                    android:backgroundTint="#FFFFCC"
-                    android:elevation="10dp"
-                    android:fontFamily="@font/jujutsu_kaisen"
-                    android:shadowColor="#FFFFFF"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:text="LEVEL 04"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
-
-                <Button
-                    android:id="@+id/btnStudy5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/ripple"
-                    android:backgroundTint="#FFFFCC"
-                    android:elevation="10dp"
-                    android:fontFamily="@font/jujutsu_kaisen"
-                    android:shadowColor="#FFFFFF"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:text="LEVEL 05"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
-
-                <Button
-                    android:id="@+id/btnStudy6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/ripple"
-                    android:backgroundTint="#FFFFCC"
-                    android:elevation="10dp"
-                    android:fontFamily="@font/jujutsu_kaisen"
-                    android:shadowColor="#FFFFFF"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:text="LEVEL 06"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
-
-                <Button
-                    android:id="@+id/btnStudy7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/ripple"
-                    android:backgroundTint="#FFFFCC"
-                    android:elevation="10dp"
-                    android:fontFamily="@font/jujutsu_kaisen"
-                    android:shadowColor="#FFFFFF"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:text="LEVEL 07"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
-
-                <Button
-                    android:id="@+id/btnStudy8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/ripple"
-                    android:backgroundTint="#FFFFCC"
-                    android:elevation="10dp"
-                    android:fontFamily="@font/jujutsu_kaisen"
-                    android:shadowColor="#FFFFFF"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:text="LEVEL 08"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
-
-                <Button
-                    android:id="@+id/btnStudy9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/ripple"
-                    android:backgroundTint="#FFFFCC"
-                    android:elevation="10dp"
-                    android:fontFamily="@font/jujutsu_kaisen"
-                    android:shadowColor="#FFFFFF"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:text="LEVEL 09"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
-
-                <Button
-                    android:id="@+id/btnStudy10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/ripple"
-                    android:backgroundTint="#FFFFCC"
-                    android:elevation="10dp"
-                    android:fontFamily="@font/jujutsu_kaisen"
-                    android:shadowColor="#FFFFFF"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:text="LEVEL 10"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
-
-            </LinearLayout>
-        </HorizontalScrollView>
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fgDisplay"
             android:layout_width="0dp"
-            android:layout_height="550dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
             app:layout_constraintEnd_toEndOf="@+id/fgDisplayGuidelineRight"
             app:layout_constraintStart_toStartOf="@+id/fgDisplayGuidelineLeft"
-            app:layout_constraintTop_toTopOf="@+id/fgDisplayGuidelineTop" />
+            app:layout_constraintTop_toBottomOf="@+id/fgDisplayGuidelineTop" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/fgDisplayGuidelineLeft"
@@ -266,14 +83,226 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".12" />
+            app:layout_constraintGuide_percent=".1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnConstraint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop">
+
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="@id/levelButtonGuidelineRight"
+            app:layout_constraintStart_toStartOf="@+id/levelButtonGuidelineLeft"
+            app:layout_constraintTop_toTopOf="@+id/levelButtonGuidelineTop">
+
+            <LinearLayout
+                android:id="@+id/layoutLevelList"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnBackToMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="Back"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="@string/level_1"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="@string/level_2"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="@string/level_3"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="@string/level_4"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="@string/level_5"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="@string/level_6"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="@string/level_7"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="@string/level_8"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="@string/level_9"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnStudy10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
+                    android:backgroundTint="#FFFFCC"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/jujutsu_kaisen"
+                    android:shadowColor="#FFFFFF"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:text="@string/level_10"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/levelButtonGuidelineLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent=".1"/>
+            app:layout_constraintGuide_percent=".1" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/levelButtonGuidelineRight"
@@ -281,12 +310,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent=".9" />
+
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/levelButtonGuidelineBottom"
+            android:id="@+id/levelButtonGuidelineTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".1" />
+            app:layout_constraintGuide_percent=".03" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

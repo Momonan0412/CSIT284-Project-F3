@@ -67,8 +67,6 @@ public class SignIn extends AppCompatActivity {
                                     }
                                 });
                                 startActivity(intent);
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Sign In Unsuccessful", Toast.LENGTH_SHORT).show();
                             }
                         });
             }

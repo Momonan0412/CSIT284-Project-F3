@@ -110,11 +110,11 @@ public class Level extends Fragment {
 //        displayStuff.setPadding(2,2,2,2);
 //        displayStuff.setBackgroundColor(Color.GRAY);
 
-        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) layout.getLayoutParams();
-        int marginDP = 500;
-        float scale = getResources().getDisplayMetrics().density;
-        int marginPX = (int) (marginDP * scale + 0.5f);
-        params.topMargin = marginPX;
+//        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) layout.getLayoutParams();
+//        int marginDP = 500;
+//        float scale = getResources().getDisplayMetrics().density;
+//        int marginPX = (int) (marginDP * scale + 0.5f);
+//        params.topMargin = marginPX;
 
         System.out.println(layout.isActivated());
         DatabaseUtilities.getKanji("Level "+ Study.getLevel(),getContext(),(data)->{
@@ -134,6 +134,13 @@ public class Level extends Fragment {
                     btnArray[i] = btn;
 
 
+                    // Set layout parameters for the button
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    );
+                    btn.setLayoutParams(params);
+                    params.setMargins(10, 10, 10, 10);  // Example margins
                     layout.addView(btn);
                 }
             }catch (JSONException e){
