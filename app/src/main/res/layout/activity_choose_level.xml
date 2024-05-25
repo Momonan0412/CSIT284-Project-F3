@@ -17,7 +17,6 @@
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toTopOf="@id/guidelineTop"
-        app:layout_constraintBottom_toBottomOf="@+id/guidelineBottom"
         app:srcCompat="@drawable/background" />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineLeft"
@@ -45,6 +44,24 @@
         app:layout_constraintGuide_percent="1" />
     <!-- TO BE REVISED -->
 
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:src="@drawable/trafalgarlaw"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineNekoLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineNekoTop"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineNekoLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".94"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineNekoTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".8" />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"

@@ -23,11 +23,14 @@ import org.json.JSONObject;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class MainActivity extends AppCompatActivity {
     int indexCount = 0;
     RelativeLayout loadingPanel;
     Button btnSignIn, btnSignUp;
     ConstraintLayout textViewPleaseWait;
+    GifImageView furinaHiNakoPlease;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         btnSignIn.setVisibility(View.INVISIBLE);
         btnSignUp.setVisibility(View.INVISIBLE);
         textViewPleaseWait = findViewById(R.id.textViewPleaseWait);
-
+        furinaHiNakoPlease = findViewById(R.id.furinaHiNakoPlease);
         AtomicInteger databaseSize = new AtomicInteger();
         for(int i = 1; i <= 10; i++){
             int finalI = i;
@@ -64,8 +67,9 @@ public class MainActivity extends AppCompatActivity {
                             btnSignUp.setVisibility(View.VISIBLE);
                             loadingPanel.setVisibility(View.GONE);
                             textViewPleaseWait.setVisibility(View.GONE);
+                            furinaHiNakoPlease.setVisibility(View.GONE);
                         }
-                    }, 2000); // 2000 milliseconds = 2 seconds
+                    }, 4000); // 2000 milliseconds = 2 seconds
                 }
             });
         }

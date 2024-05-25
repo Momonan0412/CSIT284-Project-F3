@@ -17,7 +17,6 @@
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
         app:layout_constraintTop_toTopOf="@id/guidelineTop"
-        app:layout_constraintBottom_toBottomOf="@+id/guidelineBottom"
         app:srcCompat="@drawable/background" />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineLeft"
@@ -131,7 +130,32 @@
             android:foregroundGravity="center"
             android:indeterminate="true" />
     </RelativeLayout>
-
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/furinaHiNakoPlease"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/waiting"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineNekoEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineNekoStart"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelineNekoBottom"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineNekoStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".35"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineNekoEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".65" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineNekoBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".45" />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/textViewPleaseWait"
         android:layout_width="0dp"
