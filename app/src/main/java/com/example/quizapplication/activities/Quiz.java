@@ -120,19 +120,29 @@ public class Quiz extends AppCompatActivity {
                 JSONObject jsonObject = jsonArrayCopy.getJSONObject(indexKanjiForSet);
                 String furigana = jsonObject.getString("furigana");
                 String english = jsonObject.getString("english");
+                System.out.println(furigana+"sfdadsgdsgsdg"+english);
                 textViews[index++].setText(furigana + " " + english);
             }
             // OVERRIDE
             JSONObject jsonObject = jsonArrayCopy.getJSONObject(indexKanji);
+            System.out.println(indexKanji+"theeee index of the kanji");
             String furigana = jsonObject.getString("furigana");
             String english = jsonObject.getString("english");
             String kanji = jsonObject.getString("kanji");
             textViews[indexChoice].setText(furigana + " " + english);
+            System.out.println("kanjiiiii "+kanji +"safagsdgaaga" +furigana+"so this should be the coorecet one"+english);
+
+
+
             // SETTERS
-            textViewKanji.setText(jsonArray.getJSONObject(indexKanji).getString("kanji"));
+//            textViewKanji.setText(jsonArray.getJSONObject(indexKanji).getString("kanji"));// TODO THIS IS WHAT I CHANGED
+            textViewKanji.setText(kanji);
+
             answer[0] = kanji;
             answer[1] = english;
             answer[2] = furigana;
+            System.out.println("Correct answer is: "+ answer[2]+"andddddd"+answer[1]);
+
         } catch (JSONException e) {
             throw new RuntimeException(e);
         } finally {
